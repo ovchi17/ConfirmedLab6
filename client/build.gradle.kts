@@ -29,6 +29,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0-RC")
     implementation(kotlin("serialization", version = kotlinVersion))
     implementation("io.insert-koin:koin-core:$koinVersion")
+
+    implementation(project(":commonFiles"))
 }
 
 tasks.test {
