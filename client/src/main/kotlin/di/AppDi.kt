@@ -1,17 +1,13 @@
 package di
 
 import commandsHelpers.AddSet
-//import commandsHelpers.WorkWithResultModule
+import commandsHelpers.ExecuteScript
 import controllers.*
 import org.koin.dsl.module
 import usersView.ConsoleWriter
 
 
 val koinModule = module {
-
-    //single<CollectionMainCommands> {
-    //    WorkWithCollection()
-    //}
 
     single {
         ConsoleWriter()
@@ -25,20 +21,8 @@ val koinModule = module {
         AddSet()
     }
 
-    //single {
-    //    WorkWithFile()
-    //}
-
-    //single {
-    //    Serializer()
-    //}
-
-    //factory {
-    //    WorkWithResultModule()
-    //}
-
-    //single {
-    //    Parametrs()
-    //}
+    single {
+        ExecuteScript()
+    }
 
 }

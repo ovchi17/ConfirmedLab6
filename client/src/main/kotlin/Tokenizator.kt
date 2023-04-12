@@ -1,15 +1,14 @@
-package controllers
+
 
 import commandsHelpers.AddSet
-//import commandsHelpers.ResultModule
-//import commandsHelpers.Status
+import commandsHelpers.ExecuteScript
+import commandsHelpers.Help
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-//import workCommandsList.AddIfMax
 import usersView.AnswerToUser
 import usersView.ConsoleWriter
-import usersView.TypeMessages
-import workCommandsList.*
+
+
 
 /**
  * Tokenizator class.
@@ -19,71 +18,31 @@ import workCommandsList.*
  * @since 1.0.0
  */
 
-// РЕОРГАНИЗОВАТЬ ТОКЕНАЙЗЕР, УБРАТЬ ЗАВИСИМОСТИ ОТ ВТОРОЙ ФУНКЦИИ, ЗАПРОСЫ БУДУТ ДЕЛАТЬ ОТСЮДА ПОД ЕДИННЫЙ СТИЛЬ ОТПРАВКИ
 
-/*
 class Tokenizator: KoinComponent {
 
-    /**
-     * mp method. Keys for command
-     *
-     * @param command Using this parametr we can get the Command
-     * @return command as Command
-     */
-    fun mp(command: String): Command? {
-        val help: Help = Help()
-        val info: Info = Info()
-        val show: Show = Show()
-        val add: Add = Add()
-        val updateId: UpdateId = UpdateId()
-        val removeById: RemoveById = RemoveById()
-        val clear: Clear = Clear()
-        val save: Save = Save()
-        val executeScript: ExecuteScript = ExecuteScript()
-        val exit: Exit = Exit()
-        val removeFirst: RemoveFirst = RemoveFirst()
-        val addIfMax: AddIfMax = AddIfMax()
-        val history: History = History()
-        val removeAllByDistance: RemoveAllByDistance = RemoveAllByDistance()
-        val averageOfDistance: AverageOfDistance = AverageOfDistance()
-        val filterLessThanDistance: FilterLessThanDistance = FilterLessThanDistance()
-        val switch: Switch = Switch()
+    fun commandsList(name: String): String{
+        val listOfNo = listOf("help", "info", "show", "clear", "save", "exit", "remove_first", "history", "average_of_distance", "switch")
+        val listOfLong = listOf("update", "remove_by_id", "remove_all_by_distance", "filter_less_than_distance")
+        val listOfString = listOf("execute_script")
+        val listOfAdd = listOf("add_if_max", "add")
 
-        val COMMANDS = mapOf(
-            "help" to help,
-            "info" to info,
-            "show" to show,
-            "add" to add,
-            "update" to updateId,
-            "remove_by_id" to removeById,
-            "clear" to clear,
-            "save" to save,
-            "execute_script" to executeScript,
-            "exit" to exit,
-            "remove_first" to removeFirst,
-            "add_if_max" to addIfMax,
-            "history" to history,
-            "remove_all_by_distance" to removeAllByDistance,
-            "average_of_distance" to averageOfDistance,
-            "filter_less_than_distance" to filterLessThanDistance,
-            "switch" to switch)
-
-        if (command in COMMANDS) {
-            return COMMANDS[command]
+        if (name in listOfNo){
+            return "listOfNo"
+        }else if (name in listOfLong){
+            return  "listOfLong"
+        }else if (name in listOfString){
+            return "listOfString"
         }else{
-            return null
+            return "noCommand"
         }
     }
 
-
-    val listOfNo = listOf("help", "info", "show", "clear", "save", "exit", "remove_first", "add_if_max", "history", "average_of_distance", "switch")
-    val listOfLong = listOf("update", "remove_by_id", "remove_all_by_distance", "filter_less_than_distance", "add")
-    val listString = listOf("execute_script")
-
-    val typeMessages: TypeMessages = TypeMessages()
     var writeToConsole: ConsoleWriter = ConsoleWriter()
     val answerToUser: AnswerToUser = AnswerToUser()
-    val parametrs: Parametrs by inject()
+    val executeScript: ExecuteScript by inject()
+    val addSet: AddSet by inject()
+    val help = Help()
 
     /**
      * tokenizator method. Tokenizate massive to commands with right arguments.
@@ -92,90 +51,42 @@ class Tokenizator: KoinComponent {
      * @param mass: Array of String arguments.
      * @param workWithCollection: WorkWithCollection contains our main collection
      */
-    fun tokenizator(command: Command, mass: List<String>){
+    fun tokenizator(command: String, mass: List<String>){
         val sendList = mutableListOf<Any>()
-        if (mass[0] in listOfLong){
+        if (commandsList(command) == "listOfLong"){
             var newToken:Long = 1
             try {
-                newToken = mass[1].toLong()
+                newToken = mass[0].toLong()
             }catch (e: NumberFormatException){
                 answerToUser.writeToConsoleLn("Ошибка в парматрах, установлено значение по умолчанию")
             }
             sendList.add(newToken)
-        }else if(mass[0] in listString){
-            val newToken = mass[1].toString()
-            sendList.add(newToken)
-        }
-        parametrs.setParametrs(sendList)
-        val getResultModule: ResultModule = command.execute()
-        if (getResultModule.status == Status.SUCCESS) {
-            for (msg in getResultModule.msgToPrint) {
-                if (typeMessages.msgToPrint(msg) != null) {
-                    writeToConsole.printToConsoleLn(msg)
-                } else {
-                    answerToUser.writeToConsoleLn(msg)
-                }
+        }else if(commandsList(command) == "listOfString"){
+            sendList.add(mass[0])
+            executeScript.execute(sendList)
+        }else if(commandsList(command) == "listOfAdd"){
+            val name = addSet.name("noInfo")
+            val coord1: Long = addSet.coord1("noInfo")
+            val coord2: Long = addSet.coord2("noInfo")
+            val location1: Long = addSet.location1("noInfo")
+            val location2: Long = addSet.location2("noInfo")
+            val location3: Int = addSet.location3("noInfo")
+            val location1_2: Long = addSet.location12("noInfo")
+            val location2_2: Long = addSet.location22("noInfo")
+            val location3_2: Int = addSet.location32("noInfo")
+            val distance = addSet.distance("noInfo")
+            val list = listOf<Any>(name, coord1, coord2, location1, location2, location3, location1_2, location2_2, location3_2, distance)
+            sendList.addAll(list)
+            //ПРОПИСАТЬ ОТПРАВКУ НА СЕРВЕР
+        }else if(commandsList(command) == "listOfNo"){
+            if (command == "help"){
+                help.execute()
+            }else{
+                //ПРОПИСАТЬ ОТПРАВКУ НА СЕРВЕР
             }
-            answerToUser.writeToConsoleLn(" ")
-        }else{
-            getResultModule.errorDescription?.let { writeToConsole.printToConsoleLn(it) }
+        }else if(commandsList(command) == "noCommand"){
+            writeToConsole.printToConsoleLn("infoAbout")
         }
     }
 
-    /**
-     * tokenizatorHelper method. Tokenizate massive to commands with right arguments(use it for add commands).
-     *
-     * @param command: String. Contains the command to be executed, but in String type.
-     * @param mass: Array of String arguments.
-     * @param workWithCollection: WorkWithCollection contains our main collection
-     */
-    fun tokenizatorHelper(command: String, mass: List<String>){
-
-        if (command in listString || command in listOfLong || command in listOfNo){
-            val commandRight: Command? = mp(command)
-            if (commandRight != null) {
-                val sendList = mutableListOf<Any>()
-
-                if (command == "add" || command == "add_if_max") {
-                    sendList.add(1.toLong())
-                    sendList.add(mass[1])
-                }else if (mass[0] in listOfLong){
-                    val newToken = mass[1].toLong()
-                    sendList.add(newToken)
-                }else if(mass[0] in listString){
-                    val newToken = mass[1].toString()
-                    sendList.add(newToken)
-                }
-                parametrs.setParametrs(sendList)
-                val getResultModule: ResultModule = commandRight.execute()
-                if (getResultModule.status == Status.SUCCESS) {
-                    for (msg in getResultModule.msgToPrint) {
-                        if (typeMessages.msgToPrint(msg) != null) {
-                            writeToConsole.printToConsoleLn(msg)
-                        } else {
-                            answerToUser.writeToConsoleLn(msg)
-                        }
-                    }
-                    answerToUser.writeToConsoleLn(" ")
-                }else{
-                    getResultModule.errorDescription?.let { writeToConsole.printToConsoleLn(it) }
-                }
-            }
-
-        }else{
-            answerToUser.writeToConsoleLn("Ошибка в исполняемом скрипте")
-        }
-    }
-
-    /**
-     * getCommand method. Returns command from string key
-     *
-     * @param command
-     * @return message as Command
-     */
-    fun getCommand(command: String): Command? {
-        val commandGet: Command? = mp(command)
-        return commandGet
-    }
 }
-*/

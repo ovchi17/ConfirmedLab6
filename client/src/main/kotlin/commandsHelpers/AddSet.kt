@@ -54,9 +54,9 @@ class AddSet {
      * @param parametr
      * @return message as Long
      */
-    fun coord1(parametr: String?): Long?{
+    fun coord1(parametr: String?): Long{
         var coord1: String? = "0"
-        var resultReturn: Long? = null
+        var resultReturn: Long = 0
         if (parametr == "noInfo"){
             consoleWriter.printToConsole("coordinateX")
             coord1 = readFromUser.readUsersMessage()
@@ -121,9 +121,9 @@ class AddSet {
      * @param parametr
      * @return message as Long
      */
-    fun location1(parametr: String?): Long?{
+    fun location1(parametr: String?): Long{
         var location1: String? = "0"
-        var resultReturn: Long? = null
+        var resultReturn: Long = 0
         if (parametr == "noInfo"){
             consoleWriter.printToConsole("location1")
             location1 = readFromUser.readUsersMessage()
@@ -217,9 +217,9 @@ class AddSet {
      * @param parametr
      * @return message as Long
      */
-    fun location12(parametr: String?): Long?{
+    fun location12(parametr: String?): Long{
         var location12: String? = "0"
-        var resultReturn: Long? = null
+        var resultReturn: Long = 0
         if (parametr == "noInfo"){
             consoleWriter.printToConsole("location1_2")
             location12 = readFromUser.readUsersMessage()
