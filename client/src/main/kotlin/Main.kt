@@ -1,4 +1,4 @@
-import controllers.Tokenizator
+
 import di.koinModule
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -22,7 +22,7 @@ fun main() {
         val getCommandFromUser: List<String> = ((readln().lowercase()) + " 1").split(" ")
         val command = getCommandFromUser[0]
         val argument = mutableListOf<String>()
-        for (i in 1..getCommandFromUser.size) {
+        for (i in 1..getCommandFromUser.size - 1) {
             argument.add(getCommandFromUser[i])
         }
         tokenizator.tokenizator(command, argument)

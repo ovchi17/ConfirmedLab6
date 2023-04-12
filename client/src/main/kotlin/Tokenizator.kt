@@ -3,11 +3,13 @@
 import commandsHelpers.AddSet
 import commandsHelpers.ExecuteScript
 import commandsHelpers.Help
+import moduleWithResults.ResultModule
+import moduleWithResults.Status
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import usersView.AnswerToUser
 import usersView.ConsoleWriter
-
+import usersView.TypeMessages
 
 
 /**
@@ -33,12 +35,15 @@ class Tokenizator: KoinComponent {
             return  "listOfLong"
         }else if (name in listOfString){
             return "listOfString"
+        }else if (name in listOfAdd){
+            return "listOfAdd"
         }else{
             return "noCommand"
         }
     }
 
     var writeToConsole: ConsoleWriter = ConsoleWriter()
+    val typeMessages: TypeMessages = TypeMessages()
     val answerToUser: AnswerToUser = AnswerToUser()
     val executeScript: ExecuteScript by inject()
     val addSet: AddSet by inject()
@@ -63,7 +68,19 @@ class Tokenizator: KoinComponent {
             sendList.add(newToken)
         }else if(commandsList(command) == "listOfString"){
             sendList.add(mass[0])
-            executeScript.execute(sendList)
+            val getResultModule: ResultModule = executeScript.execute(sendList)
+            if (getResultModule.status == Status.SUCCESS) {
+                for (msg in getResultModule.msgToPrint) {
+                    if (typeMessages.msgToPrint(msg) != null) {
+                        writeToConsole.printToConsoleLn(msg)
+                    } else {
+                        answerToUser.writeToConsoleLn(msg)
+                    }
+                }
+                answerToUser.writeToConsoleLn(" ")
+            }else{
+                getResultModule.errorDescription?.let { writeToConsole.printToConsoleLn(it) }
+            }
         }else if(commandsList(command) == "listOfAdd"){
             val name = addSet.name("noInfo")
             val coord1: Long = addSet.coord1("noInfo")
@@ -87,6 +104,25 @@ class Tokenizator: KoinComponent {
         }else if(commandsList(command) == "noCommand"){
             writeToConsole.printToConsoleLn("infoAbout")
         }
+    }
+
+    fun tokenizatorAdder(command: String, mass: List<String>){
+        val sendList = mutableListOf<Any>()
+        val args = mass[1].split(" ")
+
+        val name = addSet.name(args[0])
+        val coord1: Long = addSet.coord1(args[1])
+        val coord2: Long = addSet.coord2(args[2])
+        val location1: Long = addSet.location1(args[3])
+        val location2: Long = addSet.location2(args[4])
+        val location3: Int = addSet.location3(args[5])
+        val location1_2: Long = addSet.location12(args[6])
+        val location2_2: Long = addSet.location22(args[7])
+        val location3_2: Int = addSet.location32(args[8])
+        val distance = addSet.distance(args[9])
+        val list = listOf<Any>(name, coord1, coord2, location1, location2, location3, location1_2, location2_2, location3_2, distance)
+        sendList.addAll(list)
+
     }
 
 }

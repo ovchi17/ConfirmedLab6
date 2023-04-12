@@ -1,7 +1,10 @@
 package commandsHelpers
 
+import Tokenizator
 import org.jetbrains.kotlin.konan.file.File
 import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
+import moduleWithResults.*
 
 /**
  * Class ExecuteScript. Run commands from file.
@@ -18,6 +21,8 @@ class ExecuteScript: KoinComponent {
     var addChecker = 0
     var params = ""
     var specialForAdd = ""
+    val tokenizator: Tokenizator by inject()
+    val workWithResultModule = WorkWithResultModule()
 
     /**
      * execute method. Starts script
@@ -25,55 +30,54 @@ class ExecuteScript: KoinComponent {
      * @return info from command as ResultModule
      */
 
-/*
-fun execute(str: List<Any>) {
 
-    getLink = str[0] as String
+    fun execute(str: List<Any>): ResultModule {
 
-    if (File(getLink).exists){
-        fileLink = File(getLink)
-        if (stopRecursion >= checkerRecursion) {
-            val commandFromFile = fileLink.readStrings()
-            for (line in commandFromFile) {
-                val args = line.split(" ")
-                if (args[0] == "execute_script") {
-                    checkerRecursion++
-                    val sendList = mutableListOf<Any>()
-                    sendList.add(args[1])
-                    parametrs.setParametrs(sendList)
-                    execute()
-                }else if (args[0] == "add" || args[0] == "add_if_max"){
-                    addChecker = 10
-                    specialForAdd = args[0]
-                }else{
-                    if (addChecker > 0){
-                        params = params + line + " "
-                        addChecker -= 1
-                        if (addChecker == 0){
-                            val addList = mutableListOf<String>()
-                            addList.add(specialForAdd)
-                            addList.add(params)
-                            params = ""
-                            tokenizator.tokenizatorHelper(specialForAdd, addList)
-                        }
+        getLink = str[0] as String
+
+        if (File(getLink).exists){
+            fileLink = File(getLink)
+            if (stopRecursion >= checkerRecursion) {
+                val commandFromFile = fileLink.readStrings()
+                for (line in commandFromFile) {
+                    val args = line.split(" ")
+                    if (args[0] == "execute_script") {
+                        checkerRecursion++
+                        val sendList = mutableListOf<Any>()
+                        sendList.add(args[1])
+                        execute(sendList)
+                    }else if (args[0] == "add" || args[0] == "add_if_max"){
+                        addChecker = 10
+                        specialForAdd = args[0]
                     }else{
-                        tokenizator.tokenizatorHelper(args[0], args)
+                        if (addChecker > 0){
+                            params = params + line + " "
+                            addChecker -= 1
+                            if (addChecker == 0){
+                                val addList = mutableListOf<String>()
+                                addList.add(params)
+                                params = ""
+                                tokenizator.tokenizatorAdder(specialForAdd, addList)
+                            }
+                        }else{
+                            tokenizator.tokenizator(args[0], listOf(args[1]))
+                        }
                     }
                 }
+            }else{
+                workWithResultModule.setError("recursion")
+                workWithResultModule.setStatus(Status.ERROR)
+                return workWithResultModule.getResultModule()
             }
         }else{
-            workWithResultModule.setError("recursion")
-            workWithResultModule.setStatus(Status.ERROR)
+            workWithResultModule.setMessages("noFile")
         }
-    }else{
-        workWithResultModule.setMessages("noFile")
-    }
 
-    checkerRecursion -= 1
-    if (checkerRecursion == 0) {
-        workWithResultModule.setMessages("success")
-    }
+        checkerRecursion -= 1
+        if (checkerRecursion == 0) {
+            workWithResultModule.setMessages("success")
+        }
+        return workWithResultModule.getResultModule()
 
+    }
 }
-}
-**/
