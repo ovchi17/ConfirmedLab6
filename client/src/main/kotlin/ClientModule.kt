@@ -13,7 +13,7 @@ class ClientModule(val nameHost: String, val namePort: Int) {
     private lateinit var channel: DatagramChannel
 
     fun start(){
-        val channel = DatagramChannel.open()
+        channel = DatagramChannel.open()
         channel.bind(InetSocketAddress(nameHost, namePort))
     }
 
