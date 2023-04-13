@@ -58,6 +58,7 @@ class Tokenizator: KoinComponent {
      */
     fun tokenizator(command: String, mass: List<String>){
         val sendList = mutableListOf<Any>()
+        val clientModule: ClientModule by inject()
         if (commandsList(command) == "listOfLong"){
             var newToken:Long = 1
             try {
@@ -95,11 +96,15 @@ class Tokenizator: KoinComponent {
             val list = listOf<Any>(name, coord1, coord2, location1, location2, location3, location1_2, location2_2, location3_2, distance)
             sendList.addAll(list)
             //ПРОПИСАТЬ ОТПРАВКУ НА СЕРВЕР
+            clientModule.sender(command, sendList)
+            clientModule.receiver()
         }else if(commandsList(command) == "listOfNo"){
             if (command == "help"){
                 help.execute()
             }else{
                 //ПРОПИСАТЬ ОТПРАВКУ НА СЕРВЕР
+                clientModule.sender(command, sendList)
+                clientModule.receiver()
             }
         }else if(commandsList(command) == "noCommand"){
             writeToConsole.printToConsoleLn("infoAbout")

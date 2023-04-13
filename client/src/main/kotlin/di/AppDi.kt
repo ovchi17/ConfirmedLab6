@@ -1,5 +1,6 @@
 package di
 
+import ClientModule
 import Tokenizator
 import commandsHelpers.AddSet
 import commandsHelpers.ExecuteScript
@@ -24,6 +25,10 @@ val koinModule = module {
 
     single {
         ExecuteScript()
+    }
+
+    single {
+        ClientModule(nameHost = get(), namePort = get())
     }
 
 }

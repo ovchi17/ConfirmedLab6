@@ -1,4 +1,5 @@
 
+import com.sun.security.ntlm.Client
 import di.koinModule
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -13,9 +14,10 @@ fun main() {
     //Ilya
     val writeToConsole: AnswerToUser = AnswerToUser()
     val tokenizator = KoinStarter().returnTokenizator()
+    val clientModule = KoinStarter().returnClientModule()
 
     writeToConsole.writeToConsoleLn("Для получения списка команд введите: help")
-
+    clientModule.start()
 
     while (true){
         writeToConsole.writeToConsole("> ")
@@ -31,8 +33,12 @@ fun main() {
 
 class KoinStarter: KoinComponent{
     val tokenizator: Tokenizator by inject()
-
+    val clientModule: ClientModule by inject()
     fun returnTokenizator(): Tokenizator{
         return tokenizator
+    }
+
+    fun returnClientModule(): ClientModule{
+        return clientModule
     }
 }
