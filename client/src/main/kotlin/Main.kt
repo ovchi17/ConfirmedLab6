@@ -10,7 +10,7 @@ fun main() {
     startKoin {
         modules(koinModule)
     }
-    //Ilya
+    //Stas
     val writeToConsole: AnswerToUser = AnswerToUser()
     val tokenizator = KoinStarter().returnTokenizator()
 
