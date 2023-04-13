@@ -18,7 +18,7 @@ class Show: Command() {
      *
      * @return info from command as ResultModule
      */
-    override fun execute(): ResultModule {
+    override fun execute(getArgs: MutableList<Any>): ResultModule {
 
         val collection = PriorityQueue<Route>(RouteComporator())
         collection.addAll(workWithCollection.getCollection())
@@ -26,12 +26,12 @@ class Show: Command() {
         if (collection.size == 0){
             workWithResultModule.setMessages("emptyCollection")
         }else if(collection.size == 1){
-            workWithResultModule.setMessages(consoleWriter.returnKeyValue("showName").toString() + collection.peek().name.toString())
-            workWithResultModule.setMessages(consoleWriter.returnKeyValue("showId").toString() + collection.peek().id.toString())
+            workWithResultModule.setMessages("Name: " + collection.peek().name.toString())
+            workWithResultModule.setMessages(" Id: " + collection.peek().id.toString())
         }else{
             for (i in 0..collection.size - 1){
-                workWithResultModule.setMessages(consoleWriter.returnKeyValue("showName").toString() + collection.peek().name.toString())
-                workWithResultModule.setMessages(consoleWriter.returnKeyValue("showId").toString() + collection.peek().id.toString())
+                workWithResultModule.setMessages("Name: " + collection.peek().name.toString())
+                workWithResultModule.setMessages(" Id: " + collection.peek().id.toString())
                 collection.poll()
             }
         }

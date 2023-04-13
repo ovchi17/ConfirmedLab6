@@ -21,59 +21,46 @@ class AddIfMax: Command() {
      *
      * @return info from command as ResultModule
      */
-    override fun execute(): ResultModule {
+    override fun execute(getArgs: MutableList<Any>): ResultModule {
 
-        val parametrsList: MutableList<String?> = mutableListOf("noInfo", "noInfo", "noInfo", "noInfo", "noInfo", "noInfo", "noInfo", "noInfo", "noInfo", "noInfo")
-        val str = parametrs.getParametrs()
-
-        if (str.size > 1){
-            val getParams = (str[1] as String).split(" ")
-            parametrsList[0] = getParams[0]
-            parametrsList[1] = getParams[1]
-            parametrsList[2] = getParams[2]
-            parametrsList[3] = getParams[3]
-            parametrsList[4] = getParams[4]
-            parametrsList[5] = getParams[5]
-            parametrsList[6] = getParams[6]
-            parametrsList[7] = getParams[7]
-            parametrsList[8] = getParams[8]
-            parametrsList[9] = getParams[9]
-        }
-
+        val str = getArgs[0] as List<Any>
         val collection = PriorityQueue<Route>(RouteComporator())
         collection.addAll(workWithCollection.getCollection())
 
         workWithCollection.idPlusOne()
-        val id: Long = workWithCollection.getId()
-        val name: String
+        var id: Long = workWithCollection.getId()
+        val name: String?
         val coordinates: Coordinates
         val creationDate: LocalDate = LocalDate.now()
         val from: Location
         val to: Location
         val distance: Long
+        val stopper: Long = 1
 
-        name = addSet.name(parametrsList[0])
-        val coord1: Long? = addSet.coord1(parametrsList[1])
-        val coord2: Long = addSet.coord2(parametrsList[2])
-        val location1: Long? = addSet.location1(parametrsList[3])
-        val location2: Long = addSet.location2(parametrsList[4])
-        val location3: Int = addSet.location3(parametrsList[5])
-        val location1_2: Long? = addSet.location12(parametrsList[6])
-        val location2_2: Long = addSet.location22(parametrsList[7])
-        val location3_2: Int = addSet.location32(parametrsList[8])
-        distance = addSet.distance(parametrsList[9])
+        name = str[0] as String
+        val coord1: Long? = str[1] as Long?
+        val coord2: Long? = str[2] as Long?
+        val location1: Long? = str[3] as Long?
+        val location2: Long? = str[4] as Long?
+        val location3: Int? = str[5] as Int?
+        val location1_2: Long? = str[6] as Long?
+        val location2_2: Long? = str[7] as Long?
+        val location3_2: Int? = str[8] as Int?
+        distance = str[9] as Long
 
         coordinates = Coordinates(coord1, coord2)
         to = Location(location1, location2, location3)
         from = Location(location1_2, location2_2, location3_2)
 
-        val routeToAdd: Route =  Route(id,
+        val routeToAdd: Route = Route(
+            id,
             name = name,
             coordinates = coordinates,
             creationDate = creationDate,
             from = from,
             to = to,
-            distance = distance)
+            distance = distance
+        )
 
         if (collection.size == 0){
             workWithCollection.addElementToCollection(routeToAdd)

@@ -15,13 +15,13 @@ class Info: Command() {
      *
      * @return info from command as ResultModule
      */
-    override fun execute(): ResultModule {
+    override fun execute(getArgs: MutableList<Any>): ResultModule {
 
         val collection = workWithCollection.getCollection()
 
-        workWithResultModule.setMessages(consoleWriter.returnKeyValue("typeCollection").toString() + collection.javaClass.toString())
-        workWithResultModule.setMessages(consoleWriter.returnKeyValue("sizeCollection").toString() + collection.size.toString())
-        workWithResultModule.setMessages(consoleWriter.returnKeyValue("dataCollection").toString() + workWithCollection.getInitDate().toString())
+        workWithResultModule.setMessages("Тип коллекции: " + collection.javaClass.toString())
+        workWithResultModule.setMessages("Размер коллекции: " + collection.size.toString())
+        workWithResultModule.setMessages("Дата создания коллекции: " + workWithCollection.getInitDate().toString())
 
         return workWithResultModule.getResultModule()
     }

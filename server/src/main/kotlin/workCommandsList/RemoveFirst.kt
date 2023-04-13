@@ -19,7 +19,7 @@ class RemoveFirst: Command(){
      *
      * @return info from command as ResultModule
      */
-    override fun execute(): ResultModule {
+    override fun execute(getArgs: MutableList<Any>): ResultModule {
 
         val collection = PriorityQueue<Route>(RouteComporator())
         collection.addAll(workWithCollection.getCollection())

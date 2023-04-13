@@ -18,10 +18,9 @@ class RemoveById: Command() {
      *
      * @return info from command as ResultModule
      */
-    override fun execute(): ResultModule {
+    override fun execute(getArgs: MutableList<Any>): ResultModule {
 
-        val str = parametrs.getParametrs()
-        val checkId = str[0]
+        val checkId = getArgs[0] as Long
         var setMessageForMoreThenOne = "noId"
 
         val collection = PriorityQueue<Route>(RouteComporator())

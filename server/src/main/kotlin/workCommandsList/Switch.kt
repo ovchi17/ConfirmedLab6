@@ -3,7 +3,7 @@ package workCommandsList
 import moduleWithResults.ResultModule
 
 class Switch: Command() {
-    override fun execute(): ResultModule {
+    override fun execute(getArgs: MutableList<Any>): ResultModule {
 
         var keyCollection = workWithCollection.checkCollection()
 

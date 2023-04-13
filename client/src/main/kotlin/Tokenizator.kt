@@ -25,7 +25,7 @@ class Tokenizator: KoinComponent {
 
     fun commandsList(name: String): String{
         val listOfNo = listOf("help", "info", "show", "clear", "save", "exit", "remove_first", "history", "average_of_distance", "switch")
-        val listOfLong = listOf("update", "remove_by_id", "remove_all_by_distance", "filter_less_than_distance")
+        val listOfLong = listOf("remove_by_id", "remove_all_by_distance", "filter_less_than_distance")
         val listOfString = listOf("execute_script")
         val listOfAdd = listOf("add_if_max", "add")
 

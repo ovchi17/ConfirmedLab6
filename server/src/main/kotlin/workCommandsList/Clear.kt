@@ -16,7 +16,7 @@ class Clear: Command() {
      *
      * @return info from command as ResultModule
      */
-    override fun execute(): ResultModule {
+    override fun execute(getArgs: MutableList<Any>): ResultModule {
 
         workWithCollection.clearCollection()
 
