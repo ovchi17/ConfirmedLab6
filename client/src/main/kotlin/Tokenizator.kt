@@ -47,6 +47,7 @@ class Tokenizator: KoinComponent {
     val answerToUser: AnswerToUser = AnswerToUser()
     val executeScript: ExecuteScript by inject()
     val addSet: AddSet by inject()
+    val clientModule: ClientModule by inject()
     val help = Help()
 
     /**
@@ -95,16 +96,14 @@ class Tokenizator: KoinComponent {
             val distance = addSet.distance("noInfo")
             val list = listOf<Any>(name, coord1, coord2, location1, location2, location3, location1_2, location2_2, location3_2, distance)
             sendList.addAll(list)
-            //ПРОПИСАТЬ ОТПРАВКУ НА СЕРВЕР
-            clientModule.sender(command, sendList)
-            clientModule.receiver()
+            clientModule.sender(command, sendList) // Следить
+            //clientModule.receiver()
         }else if(commandsList(command) == "listOfNo"){
             if (command == "help"){
                 help.execute()
             }else{
-                //ПРОПИСАТЬ ОТПРАВКУ НА СЕРВЕР
-                clientModule.sender(command, sendList)
-                clientModule.receiver()
+                clientModule.sender(command, sendList) //Следить
+                //clientModule.receiver()
             }
         }else if(commandsList(command) == "noCommand"){
             writeToConsole.printToConsoleLn("infoAbout")

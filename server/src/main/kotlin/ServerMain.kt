@@ -1,6 +1,10 @@
+import com.google.gson.Gson
 import di.serverModule
+import moduleWithResults.ResultModule
 import org.koin.core.context.startKoin
 import workCommandsList.*
+import java.net.DatagramPacket
+import java.net.DatagramSocket
 
 fun main() {
 
@@ -8,9 +12,16 @@ fun main() {
         modules(serverModule)
     }
 
+    var socket = DatagramSocket(2003)
+
     while (true){
-        // ПОСТОЯННО ПРИНИМАЕТ ЗАПРОСЫ С КЛИЕНТА
-        // ОБНОВЛЕНИИ ИСТОРИИ ЗАПРОСОВ
+        val buffer = ByteArray(65535)
+        val packet = DatagramPacket(buffer, buffer.size)
+        socket.receive(packet)
+        val gson = Gson()
+        val json = String(packet.data, 0, packet.length)
+        val gotIt: ResultModule = gson.fromJson(json, ResultModule::class.java)
+        println(gotIt.commandName)
     }
 
 }

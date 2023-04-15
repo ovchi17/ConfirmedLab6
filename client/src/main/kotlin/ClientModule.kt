@@ -2,19 +2,20 @@ import java.net.InetSocketAddress
 import java.nio.channels.DatagramChannel
 import com.google.gson.Gson
 import moduleWithResults.ResultModule
+import moduleWithResults.WorkWithResultModule
 import java.net.DatagramPacket
+import java.net.InetAddress
 import java.nio.ByteBuffer
 import java.nio.channels.SocketChannel
 
-data class MyData(val str: String, val list: List<Any>)
-
-class ClientModule(val nameHost: String, val namePort: Int) {
+class ClientModule() {
 
     private lateinit var channel: DatagramChannel
+    private val nameHost: String = "localhost"
+    private val namePort: Int = 2003
 
     fun start(){
         channel = DatagramChannel.open()
-        channel.bind(InetSocketAddress(nameHost, namePort))
     }
 
     fun stop(){
@@ -27,12 +28,14 @@ class ClientModule(val nameHost: String, val namePort: Int) {
 
     fun sender(command: String, args: List<Any>){
         val gson = Gson()
-        val data = MyData(command, args)
-        val json = gson.toJson(data)
-        val address = InetSocketAddress(nameHost, namePort)
+        val data = WorkWithResultModule()
+        data.setCommand(command)
+        data.setArgs(args)
+        val json = gson.toJson(data.getResultModule())
         val buffer = ByteBuffer.wrap(json.toByteArray())
+        val address = InetSocketAddress(nameHost, namePort)
+        print("Отправленно")
         channel.send(buffer, address)
-
     }
 
     fun receiver():ResultModule{

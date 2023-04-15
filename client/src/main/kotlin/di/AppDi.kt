@@ -28,7 +28,7 @@ val koinModule = module {
     }
 
     single {
-        ClientModule(nameHost = get(), namePort = get())
+        ClientModule()
     }
 
 }
