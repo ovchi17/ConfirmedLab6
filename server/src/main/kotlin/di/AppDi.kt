@@ -1,5 +1,6 @@
 package di
 
+import ServerModule
 import controllers.*
 import moduleWithResults.WorkWithResultModule
 import org.koin.dsl.module
@@ -25,6 +26,10 @@ val serverModule = module {
 
     single {
         Parametrs()
+    }
+
+    single {
+        ServerModule()
     }
 
 }

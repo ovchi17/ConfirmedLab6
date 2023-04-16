@@ -12,7 +12,8 @@ class ClientModule() {
 
     private lateinit var channel: DatagramChannel
     private val nameHost: String = "localhost"
-    private val namePort: Int = 2003
+    private val namePort: Int = 2018
+    val gson = Gson()
 
     fun start(){
         channel = DatagramChannel.open()
@@ -27,18 +28,22 @@ class ClientModule() {
     }
 
     fun sender(command: String, args: List<Any>){
-        val gson = Gson()
         val data = WorkWithResultModule()
         data.setCommand(command)
         data.setArgs(args)
         val json = gson.toJson(data.getResultModule())
         val buffer = ByteBuffer.wrap(json.toByteArray())
         val address = InetSocketAddress(nameHost, namePort)
-        print("Отправленно")
+        println("Отправленно")
         channel.send(buffer, address)
     }
 
     fun receiver():ResultModule{
-        TODO("доделать")
+        val bufferReceive = ByteBuffer.allocate(65535)
+        channel.receive(bufferReceive)
+        val bytesReceiver = bufferReceive.array()
+        val resultStr = String(bytesReceiver, 0, bufferReceive.position())
+        val getInfo = gson.fromJson(resultStr, ResultModule::class.java)
+        return getInfo
     }
 }

@@ -3,7 +3,7 @@ package workCommandsList
 import moduleWithResults.ResultModule
 
 class Switch: Command() {
-    override fun execute(getArgs: MutableList<Any>): ResultModule {
+    override fun execute(getArgs: MutableList<Any>){
 
         var keyCollection = workWithCollection.checkCollection()
 
@@ -14,7 +14,7 @@ class Switch: Command() {
             workWithCollection.changeCollection()
             workWithResultModule.setMessages("changeToCollPQ")
         }
-        return workWithResultModule.getResultModule()
+        serverModule.serverSender(workWithResultModule.getResultModule())
     }
 
 }

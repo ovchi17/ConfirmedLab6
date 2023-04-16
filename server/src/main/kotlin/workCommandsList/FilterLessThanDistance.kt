@@ -19,7 +19,7 @@ class FilterLessThanDistance: Command() {
      *
      * @return info from command as ResultModule
      */
-    override fun execute(getArgs: MutableList<Any>): ResultModule {
+    override fun execute(getArgs: MutableList<Any>){
 
         val collection = PriorityQueue<Route>(RouteComporator())
         collection.addAll(workWithCollection.getCollection())
@@ -51,6 +51,6 @@ class FilterLessThanDistance: Command() {
         workWithCollection.clearCollection()
         workWithCollection.addAllElementToCollection(collection)
 
-        return workWithResultModule.getResultModule()
+        serverModule.serverSender(workWithResultModule.getResultModule())
     }
 }

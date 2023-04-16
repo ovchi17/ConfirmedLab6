@@ -16,12 +16,12 @@ class Clear: Command() {
      *
      * @return info from command as ResultModule
      */
-    override fun execute(getArgs: MutableList<Any>): ResultModule {
+    override fun execute(getArgs: MutableList<Any>) {
 
         workWithCollection.clearCollection()
 
         workWithResultModule.setMessages("cleared")
 
-        return workWithResultModule.getResultModule()
+        serverModule.serverSender(workWithResultModule.getResultModule())
     }
 }

@@ -17,9 +17,9 @@ class Add: Command() {
      *
      * @return info from command as ResultModule
      */
-    override fun execute(getArgs: MutableList<Any>): ResultModule {
+    override fun execute(getArgs: MutableList<Any>) {
 
-        val str = getArgs[0] as List<Any>
+        val str = getArgs as List<Any>
 
         workWithCollection.idPlusOne()
         var id: Long = workWithCollection.getId()
@@ -59,6 +59,6 @@ class Add: Command() {
         workWithCollection.addElementToCollection(routeToAdd)
         workWithResultModule.setMessages("success")
 
-        return workWithResultModule.getResultModule()
+        serverModule.serverSender(workWithResultModule.getResultModule())
     }
 }

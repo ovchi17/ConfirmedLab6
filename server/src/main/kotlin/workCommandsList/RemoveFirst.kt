@@ -19,7 +19,7 @@ class RemoveFirst: Command(){
      *
      * @return info from command as ResultModule
      */
-    override fun execute(getArgs: MutableList<Any>): ResultModule {
+    override fun execute(getArgs: MutableList<Any>){
 
         val collection = PriorityQueue<Route>(RouteComporator())
         collection.addAll(workWithCollection.getCollection())
@@ -30,6 +30,6 @@ class RemoveFirst: Command(){
             workWithCollection.pollCollection()
             workWithResultModule.setMessages("cleared")
         }
-        return workWithResultModule.getResultModule()
+        serverModule.serverSender(workWithResultModule.getResultModule())
     }
 }

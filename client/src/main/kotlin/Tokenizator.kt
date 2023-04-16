@@ -97,13 +97,15 @@ class Tokenizator: KoinComponent {
             val list = listOf<Any>(name, coord1, coord2, location1, location2, location3, location1_2, location2_2, location3_2, distance)
             sendList.addAll(list)
             clientModule.sender(command, sendList) // Следить
-            //clientModule.receiver()
+            val resultAnswer = clientModule.receiver()
+            println(resultAnswer)
         }else if(commandsList(command) == "listOfNo"){
             if (command == "help"){
                 help.execute()
             }else{
                 clientModule.sender(command, sendList) //Следить
-                //clientModule.receiver()
+                val resultAnswer = clientModule.receiver()
+                println(resultAnswer)
             }
         }else if(commandsList(command) == "noCommand"){
             writeToConsole.printToConsoleLn("infoAbout")
@@ -125,6 +127,7 @@ class Tokenizator: KoinComponent {
         val location3_2: Int = addSet.location32(args[8])
         val distance = addSet.distance(args[9])
         val list = listOf<Any>(name, coord1, coord2, location1, location2, location3, location1_2, location2_2, location3_2, distance)
+        println(list)
         sendList.addAll(list)
 
     }

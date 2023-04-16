@@ -15,7 +15,7 @@ class Info: Command() {
      *
      * @return info from command as ResultModule
      */
-    override fun execute(getArgs: MutableList<Any>): ResultModule {
+    override fun execute(getArgs: MutableList<Any>){
 
         val collection = workWithCollection.getCollection()
 
@@ -23,6 +23,6 @@ class Info: Command() {
         workWithResultModule.setMessages("Размер коллекции: " + collection.size.toString())
         workWithResultModule.setMessages("Дата создания коллекции: " + workWithCollection.getInitDate().toString())
 
-        return workWithResultModule.getResultModule()
+        serverModule.serverSender(workWithResultModule.getResultModule())
     }
 }

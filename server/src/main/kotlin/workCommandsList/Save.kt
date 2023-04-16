@@ -13,22 +13,22 @@ import java.util.PriorityQueue
  * @since 1.0.0
  */
 class Save: Command() {
-     private var pathToFile: String = System.getenv("DataOfCollection")
-     private var fileReader: FileReader = FileReader(pathToFile)
+     //private var pathToFile: String = System.getenv("DataOfCollection")
+     //private var fileReader: FileReader = FileReader(pathToFile)
 
     /**
      * execute method. Save collection to file
      *
      * @return info from command as ResultModule
      */
-    override fun execute(getArgs: MutableList<Any>): ResultModule {
+    override fun execute(getArgs: MutableList<Any>){
          val collection = PriorityQueue<Route>(RouteComporator())
          collection.addAll(workWithCollection.getCollection())
          val list = workWithCollection.collectionToList()
          val jsonString = serializer.serialize(list)
-         workWithFile.writeToFile(collection, pathToFile, jsonString)
+         //workWithFile.writeToFile(collection, pathToFile, jsonString)
          workWithResultModule.setMessages("saved")
 
-         return workWithResultModule.getResultModule()
+        serverModule.serverSender(workWithResultModule.getResultModule())
      }
 }

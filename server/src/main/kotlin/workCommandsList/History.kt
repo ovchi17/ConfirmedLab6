@@ -15,7 +15,7 @@ class History: Command() {
      *
      * @return info from command as ResultModule
      */
-    override fun execute(getArgs: MutableList<Any>): ResultModule {
+    override fun execute(getArgs: MutableList<Any>){
 
         val collection = workWithCollection.getHistory()
         workWithResultModule.setMessages("historyOfCommands")
@@ -25,6 +25,6 @@ class History: Command() {
         }
         workWithResultModule.setMessages(resultString)
 
-        return workWithResultModule.getResultModule()
+        serverModule.serverSender(workWithResultModule.getResultModule())
     }
 }

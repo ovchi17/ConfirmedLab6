@@ -7,7 +7,7 @@ package moduleWithResults
  * @since 1.0.0
  */
 class WorkWithResultModule {
-    var result: ResultModule = ResultModule(mutableListOf(), Status.SUCCESS, null, "show", mutableListOf())
+    var result: ResultModule = ResultModule(mutableListOf(), Status.SUCCESS, null, "noCommand", mutableListOf())
 
     /**
      * getMessages method. Return messages from commands

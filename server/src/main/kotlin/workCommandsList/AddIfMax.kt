@@ -21,7 +21,7 @@ class AddIfMax: Command() {
      *
      * @return info from command as ResultModule
      */
-    override fun execute(getArgs: MutableList<Any>): ResultModule {
+    override fun execute(getArgs: MutableList<Any>) {
 
         val str = getArgs[0] as List<Any>
         val collection = PriorityQueue<Route>(RouteComporator())
@@ -86,6 +86,7 @@ class AddIfMax: Command() {
                 workWithResultModule.setMessages("noSuccess")
             }
         }
-        return workWithResultModule.getResultModule()
+
+        serverModule.serverSender(workWithResultModule.getResultModule())
     }
 }
