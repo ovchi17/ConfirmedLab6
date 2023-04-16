@@ -2,6 +2,7 @@
 
 import commandsHelpers.AddSet
 import commandsHelpers.ExecuteScript
+import commandsHelpers.Exit
 import commandsHelpers.Help
 import moduleWithResults.ResultModule
 import moduleWithResults.Status
@@ -10,6 +11,7 @@ import org.koin.core.component.inject
 import usersView.AnswerToUser
 import usersView.ConsoleWriter
 import usersView.TypeMessages
+import usersView.WorkWithModule
 
 
 /**
@@ -24,7 +26,7 @@ import usersView.TypeMessages
 class Tokenizator: KoinComponent {
 
     fun commandsList(name: String): String{
-        val listOfNo = listOf("help", "info", "show", "clear", "save", "exit", "remove_first", "history", "average_of_distance", "switch")
+        val listOfNo = listOf("help", "info", "show", "clear", "save", "exit", "exitServer", "remove_first", "history", "average_of_distance", "switch")
         val listOfLong = listOf("remove_by_id", "remove_all_by_distance", "filter_less_than_distance")
         val listOfString = listOf("execute_script")
         val listOfAdd = listOf("add_if_max", "add")
@@ -49,6 +51,8 @@ class Tokenizator: KoinComponent {
     val addSet: AddSet by inject()
     val clientModule: ClientModule by inject()
     val help = Help()
+    val exit = Exit()
+    val displayModule: WorkWithModule = WorkWithModule()
 
     /**
      * tokenizator method. Tokenizate massive to commands with right arguments.
@@ -98,14 +102,16 @@ class Tokenizator: KoinComponent {
             sendList.addAll(list)
             clientModule.sender(command, sendList) // Следить
             val resultAnswer = clientModule.receiver()
-            println(resultAnswer)
+            displayModule.displayModule(resultAnswer)
         }else if(commandsList(command) == "listOfNo"){
             if (command == "help"){
                 help.execute()
+            }else if(command == "exit"){
+                exit.execute()
             }else{
                 clientModule.sender(command, sendList) //Следить
                 val resultAnswer = clientModule.receiver()
-                println(resultAnswer)
+                displayModule.displayModule(resultAnswer)
             }
         }else if(commandsList(command) == "noCommand"){
             writeToConsole.printToConsoleLn("infoAbout")

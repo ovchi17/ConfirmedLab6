@@ -10,7 +10,7 @@ import kotlin.system.exitProcess
  * @author OvchinnikovI17
  * @since 1.0.0
  */
-class Exit: Command(){
+class ExitServer: Command(){
 
     /**
      * execute method. Stops command

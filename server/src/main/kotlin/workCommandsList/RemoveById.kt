@@ -20,7 +20,7 @@ class RemoveById: Command() {
      */
     override fun execute(getArgs: MutableList<Any>) {
 
-        val checkId = getArgs[0] as Long
+        val checkId = (getArgs[0] as Double).toLong()
         var setMessageForMoreThenOne = "noId"
 
         val collection = PriorityQueue<Route>(RouteComporator())

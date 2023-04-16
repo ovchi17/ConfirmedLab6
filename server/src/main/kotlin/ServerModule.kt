@@ -46,7 +46,7 @@ class CommandStarter(): KoinComponent{
         val removeById: RemoveById = RemoveById()
         val clear: Clear = Clear()
         //val save: Save = Save()
-        val exit: Exit = Exit()
+        val exitServer: ExitServer = ExitServer()
         val removeFirst: RemoveFirst = RemoveFirst()
         val addIfMax: AddIfMax = AddIfMax()
         val history: History = History()
@@ -62,7 +62,7 @@ class CommandStarter(): KoinComponent{
             "remove_by_id" to removeById,
             "clear" to clear,
             //"save" to save,
-            "exit" to exit,
+            "exit" to exitServer,
             "remove_first" to removeFirst,
             "add_if_max" to addIfMax,
             "history" to history,

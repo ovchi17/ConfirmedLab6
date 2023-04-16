@@ -24,7 +24,7 @@ class FilterLessThanDistance: Command() {
         val collection = PriorityQueue<Route>(RouteComporator())
         collection.addAll(workWithCollection.getCollection())
 
-        val checkDistance = getArgs[0] as Long
+        val checkDistance = (getArgs[0] as Double).toLong()
 
         if (collection.size == 0){
             workWithResultModule.setMessages("emptyCollection")

@@ -20,7 +20,7 @@ class RemoveAllByDistance: Command() {
      */
     override fun execute(getArgs: MutableList<Any>){
 
-        val checkDistance = getArgs[0] as Long
+        val checkDistance = (getArgs[0] as Double).toLong()
 
         val collection = PriorityQueue<Route>(RouteComporator())
         collection.addAll(workWithCollection.getCollection())
