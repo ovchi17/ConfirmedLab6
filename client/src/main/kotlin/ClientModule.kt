@@ -12,7 +12,7 @@ class ClientModule() {
 
     private lateinit var channel: DatagramChannel
     private val nameHost: String = "localhost"
-    private val namePort: Int = 2018
+    private val namePort: Int = 2019
     val gson = Gson()
 
     fun start(){

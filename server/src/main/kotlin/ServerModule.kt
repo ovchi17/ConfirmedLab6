@@ -9,10 +9,9 @@ import workCommandsList.*
 import java.net.InetAddress
 
 class ServerModule {
-    var socket = DatagramSocket(2018)
+    var socket = DatagramSocket(2019)
     val commandStarter = CommandStarter()
     val gson = Gson()
-    val hostName = InetAddress.getByName("127.0.0.1")
     val buffer = ByteArray(65535)
     val packet = DatagramPacket(buffer, buffer.size)
 
