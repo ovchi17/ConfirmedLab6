@@ -26,7 +26,7 @@ import usersView.WorkWithModule
 class Tokenizator: KoinComponent {
 
     fun commandsList(name: String): String{
-        val listOfNo = listOf("help", "info", "show", "clear", "save", "exit", "exitServer", "remove_first", "history", "average_of_distance", "switch")
+        val listOfNo = listOf("help", "info", "show", "clear", "save", "exit", "exit_server", "remove_first", "history", "average_of_distance", "switch")
         val listOfLong = listOf("remove_by_id", "remove_all_by_distance", "filter_less_than_distance")
         val listOfString = listOf("execute_script")
         val listOfAdd = listOf("add_if_max", "add")
@@ -72,6 +72,9 @@ class Tokenizator: KoinComponent {
                 answerToUser.writeToConsoleLn("Ошибка в парматрах, установлено значение по умолчанию")
             }
             sendList.add(newToken)
+            clientModule.sender(command, sendList) // Следить
+            val resultAnswer = clientModule.receiver()
+            displayModule.displayModule(resultAnswer)
         }else if(commandsList(command) == "listOfString"){
             sendList.add(mass[0])
             val getResultModule: ResultModule = executeScript.execute(sendList)
