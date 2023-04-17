@@ -11,7 +11,7 @@ import java.util.*
  * @since 1.0.0
  */
 class Load: Command() {
-    //private var pathToFile: String = System.getenv("DataOfCollection")
+    //private var pathToFile: String = System.getenv("DataOfCollection.txt")
     //private var fileReader: FileReader = FileReader(pathToFile)
 
     /**
@@ -20,8 +20,10 @@ class Load: Command() {
      * @return info from command as ResultModule
      */
     override fun execute(getArgs: MutableList<Any>){
-        if (!workWithFile.checkFile()){
-            val list = serializer.deserialize(workWithFile.readFile(File(serverModule.serverReceiver().toString())))
+        val pathToFile: String = System.getProperty("DataOfCollection.server")
+//        по факту нет файла=нет путя=нечего загружать, нужно реализовать именно файл НОРМАЛЬНО.
+        if (!workWithFile.checkFile(pathToFile)){
+            val list = serializer.deserialize(workWithFile.readFile(File(pathToFile)))
             val collection: PriorityQueue<Route> = workWithCollection.listToCollection(list)
             var maxId: Int = 0
             for(i in list.indices){

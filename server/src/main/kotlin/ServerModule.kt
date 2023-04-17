@@ -12,7 +12,7 @@ import java.net.InetAddress
 import java.nio.channels.Selector
 
 class ServerModule {
-    var socket = DatagramSocket(2027)
+    var socket = DatagramSocket(2029)
     val commandStarter = CommandStarter()
     val gson = Gson()
     val buffer = ByteArray(65535)

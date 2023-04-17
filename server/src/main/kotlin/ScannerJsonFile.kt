@@ -22,7 +22,7 @@ class ScannerJsonFile: KoinComponent {
      */
     fun scanFile(){
         val workWithFile: WorkWithFile = WorkWithFile()
-        val pathToFile: String = System.getenv("DataOfCollection")
+        val pathToFile: String = System.getenv("DataOfCollection.txt")
         val serializer: Serializer = Serializer()
         if (!workWithFile.checkFile(pathToFile)){
             val list = serializer.deserialize(workWithFile.readFile(File(pathToFile)))

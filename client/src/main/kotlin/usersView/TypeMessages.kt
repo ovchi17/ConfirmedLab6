@@ -32,6 +32,7 @@ class TypeMessages {
         "helpRemove" to " ** remove_by_id id : удалить элемент из коллекции по его id",
         "helpClear" to " ** clear : очистить коллекцию",
         "helpSave" to " ** save : сохранить коллекцию в файл",
+        "helpLoad" to " ** load : загрузить коллекцию из файла",
         "helpExecute" to " ** execute_script file_name : считать и исполнить скрипт из указанного файла",
         "helpExit" to " ** exit : завершить программу (без сохранения в файл)",
         "helpRemoveFirst" to " ** remove_first : удалить первый элемент из коллекции",

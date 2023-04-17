@@ -22,6 +22,7 @@ class Help {
         writeToConsole.printToConsoleLn("helpRemove")
         writeToConsole.printToConsoleLn("helpClear")
         writeToConsole.printToConsoleLn("helpSave")
+        writeToConsole.printToConsoleLn("helpLoad")
         writeToConsole.printToConsoleLn("helpExecute")
         writeToConsole.printToConsoleLn("helpExit")
         writeToConsole.printToConsoleLn("helpRemoveFirst")
