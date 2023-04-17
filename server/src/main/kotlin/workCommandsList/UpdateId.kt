@@ -4,31 +4,14 @@ import dataSet.Coordinates
 import dataSet.Location
 import dataSet.Route
 import dataSet.RouteComporator
-import moduleWithResults.ResultModule
 import java.time.LocalDate
 import java.util.*
 
-/**
- * Class AddIfMax. Adds a new object to the collection if Distance parameter is greater than the others.
- *
- * @author OvchinnikovI17
- * @since 1.0.0
- */
-class AddIfMax: Command() {
-
-    /**
-     * execute method. Add object if distance is max
-     *
-     * @return info from command as ResultModule
-     */
-    override fun execute(getArgs: MutableList<Any>) {
-
+class UpdateId: Command() {
+    override fun execute(getArgs: MutableList<Any>){
         val str = getArgs as List<Any>
-        val collection = PriorityQueue<Route>(RouteComporator())
-        collection.addAll(workWithCollection.getCollection())
 
-        workWithCollection.idPlusOne()
-        var id: Long = workWithCollection.getId()
+        var id: Long
         val name: String?
         val coordinates: Coordinates
         val creationDate: LocalDate = LocalDate.now()
@@ -47,6 +30,7 @@ class AddIfMax: Command() {
         val location2_2: Long? = (str[7] as Double).toLong()
         val location3_2: Int? = (str[8] as Double).toInt()
         distance = (str[9] as Double).toLong()
+        id = (str[9] as Double).toLong()
 
         coordinates = Coordinates(coord1, coord2)
         to = Location(location1, location2, location3)
@@ -62,31 +46,34 @@ class AddIfMax: Command() {
             distance = distance
         )
 
+        val collection = PriorityQueue<Route>(RouteComporator())
+        collection.addAll(workWithCollection.getCollection())
+        val add: Add = Add()
+
         if (collection.size == 0){
-            workWithCollection.addElementToCollection(routeToAdd)
-            workWithResultModule.setMessages("success")
+            workWithResultModule.setMessages("emptyCollection")
         }else if(collection.size == 1){
-            if (distance > collection.peek().distance){
+            workWithCollection.clearCollection()
+            if (collection.peek().id == id){
                 workWithCollection.addElementToCollection(routeToAdd)
                 workWithResultModule.setMessages("success")
             }else{
-                workWithResultModule.setMessages("noSuccess")
+                workWithResultModule.setMessages("noId")
+                workWithCollection.addElementToCollection(collection.peek())
             }
         }else{
-            var intSr: Int = 0
+            workWithCollection.clearCollection()
             for (i in 0..collection.size - 1){
-                if (distance > collection.peek().distance) {
-                    intSr += 1
+                if (collection.peek().id == id){
+                    workWithCollection.addElementToCollection(routeToAdd)
+                    workWithResultModule.setMessages("success")
+                    collection.poll()
+                }else{
+                    workWithCollection.addElementToCollection(collection.peek())
+                    collection.poll()
                 }
             }
-            if (intSr == collection.size){
-                workWithCollection.addElementToCollection(routeToAdd)
-                workWithResultModule.setMessages("success")
-            }else{
-                workWithResultModule.setMessages("noSuccess")
-            }
         }
-
         serverModule.serverSender(workWithResultModule.getResultModule())
     }
 }

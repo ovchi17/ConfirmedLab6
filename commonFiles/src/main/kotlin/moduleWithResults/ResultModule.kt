@@ -8,6 +8,8 @@ package moduleWithResults
 data class ResultModule (
     var msgToPrint:MutableList<String>,
     var status: Status,
-    var errorDescription: String?
+    var errorDescription: String?,
+    var commandName: String,
+    var args: MutableList<Any>
 )
 

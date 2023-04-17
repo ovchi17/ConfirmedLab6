@@ -18,9 +18,9 @@ class RemoveAllByDistance: Command() {
      *
      * @return info from command as ResultModule
      */
-    override fun execute(getArgs: MutableList<Any>): ResultModule {
+    override fun execute(getArgs: MutableList<Any>){
 
-        val checkDistance = getArgs[0] as Long
+        val checkDistance = (getArgs[0] as Double).toLong()
 
         val collection = PriorityQueue<Route>(RouteComporator())
         collection.addAll(workWithCollection.getCollection())
@@ -46,6 +46,6 @@ class RemoveAllByDistance: Command() {
                 }
             }
         }
-        return workWithResultModule.getResultModule()
+        serverModule.serverSender(workWithResultModule.getResultModule())
     }
 }

@@ -18,9 +18,9 @@ class RemoveById: Command() {
      *
      * @return info from command as ResultModule
      */
-    override fun execute(getArgs: MutableList<Any>): ResultModule {
+    override fun execute(getArgs: MutableList<Any>) {
 
-        val checkId = getArgs[0] as Long
+        val checkId = (getArgs[0] as Double).toLong()
         var setMessageForMoreThenOne = "noId"
 
         val collection = PriorityQueue<Route>(RouteComporator())
@@ -48,6 +48,6 @@ class RemoveById: Command() {
             }
             workWithResultModule.setMessages(setMessageForMoreThenOne)
         }
-        return workWithResultModule.getResultModule()
+        serverModule.serverSender(workWithResultModule.getResultModule())
     }
 }

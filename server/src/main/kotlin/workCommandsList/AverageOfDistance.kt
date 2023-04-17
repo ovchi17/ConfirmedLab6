@@ -19,7 +19,7 @@ class AverageOfDistance: Command() {
      *
      * @return info from command as ResultModule
      */
-    override fun execute(getArgs: MutableList<Any>): ResultModule {
+    override fun execute(getArgs: MutableList<Any>){
 
         val collection = PriorityQueue<Route>(RouteComporator())
         collection.addAll(workWithCollection.getCollection())
@@ -37,6 +37,6 @@ class AverageOfDistance: Command() {
             result = distances / sizeCollection.count().toDouble()
             workWithResultModule.setMessages(String.format("%.2f" ,result))
         }
-        return workWithResultModule.getResultModule()
+        serverModule.serverSender(workWithResultModule.getResultModule())
     }
 }

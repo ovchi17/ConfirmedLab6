@@ -10,15 +10,17 @@ import kotlin.system.exitProcess
  * @author OvchinnikovI17
  * @since 1.0.0
  */
-class Exit: Command(){
+class ExitServer: Command(){
 
     /**
      * execute method. Stops command
      *
      * @return info from command as ResultModule
      */
-    override fun execute(getArgs: MutableList<Any>): ResultModule {
+    override fun execute(getArgs: MutableList<Any>){
         //workWithResultModule.setMessages("end")
         exitProcess(0)
+
+        serverModule.serverSender(workWithResultModule.getResultModule())
     }
 }

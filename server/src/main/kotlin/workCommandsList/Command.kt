@@ -1,5 +1,6 @@
 package workCommandsList
 
+import ServerModule
 import controllers.*
 import moduleWithResults.ResultModule
 import moduleWithResults.WorkWithResultModule
@@ -18,12 +19,13 @@ abstract class Command(): KoinComponent {
     val workWithFile: WorkWithFile by inject()
     val serializer: Serializer by inject()
     val workWithResultModule: WorkWithResultModule by inject()
+    val serverModule: ServerModule by inject()
 
     /**
      * execute method. Using in all workCommandsList
      *
      * @return info from command as ResultModule
      */
-    abstract fun execute(getArgs: MutableList<Any>): ResultModule
+    abstract fun execute(getArgs: MutableList<Any>)
 
 }
