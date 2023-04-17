@@ -29,7 +29,7 @@ class Tokenizator: KoinComponent {
         val listOfNo = listOf("help", "info", "show", "clear", "save", "exit", "exit_server", "remove_first", "history", "average_of_distance", "switch")
         val listOfLong = listOf("remove_by_id", "remove_all_by_distance", "filter_less_than_distance")
         val listOfString = listOf("execute_script")
-        val listOfAdd = listOf("add_if_max", "add")
+        val listOfAdd = listOf("add_if_max", "add", "update_id")
 
         if (name in listOfNo){
             return "listOfNo"
@@ -91,6 +91,7 @@ class Tokenizator: KoinComponent {
                 getResultModule.errorDescription?.let { writeToConsole.printToConsoleLn(it) }
             }
         }else if(commandsList(command) == "listOfAdd"){
+            var list = mutableListOf<Any>()
             val name = addSet.name("noInfo")
             val coord1: Long = addSet.coord1("noInfo")
             val coord2: Long = addSet.coord2("noInfo")
@@ -101,7 +102,12 @@ class Tokenizator: KoinComponent {
             val location2_2: Long = addSet.location22("noInfo")
             val location3_2: Int = addSet.location32("noInfo")
             val distance = addSet.distance("noInfo")
-            val list = listOf<Any>(name, coord1, coord2, location1, location2, location3, location1_2, location2_2, location3_2, distance)
+            if (command == "update_id"){
+                val id: Long = addSet.id("noInfo")
+                list = mutableListOf<Any>(name, coord1, coord2, location1, location2, location3, location1_2, location2_2, location3_2, distance, id)
+            }else{
+                list = mutableListOf<Any>(name, coord1, coord2, location1, location2, location3, location1_2, location2_2, location3_2, distance)
+            }
             sendList.addAll(list)
             clientModule.sender(command, sendList) // Следить
             val resultAnswer = clientModule.receiver()

@@ -18,6 +18,7 @@ class TypeMessages {
         "location2_2" to "Введите локацию 2_2: ",
         "location3_2" to "Введите локацию 3_2: ",
         "distance" to "Введите дистанцию: ",
+        "id" to "Введите id: ",
         "success" to  "Успешно! ",
         "noSuccess" to  "Не успешно! ",
         "end" to "Заверщение программы. ",

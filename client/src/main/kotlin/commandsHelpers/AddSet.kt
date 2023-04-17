@@ -317,6 +317,7 @@ class AddSet {
         var distance: String? = "2"
         var resultReturn: Long = 2;
 
+
         try{
             if(parametr == "noInfo"){
                 consoleWriter.printToConsole("distance")
@@ -345,7 +346,41 @@ class AddSet {
         }catch (e: NumberFormatException){
             answerToUser.writeToConsoleLn("Ошибка, установлено стандратное значение: 2")
         }
+        return resultReturn
+    }
 
+    fun id(parametr: String?): Long{
+        var id: String? = "2"
+        var resultReturn: Long = 100
+
+        try{
+            if(parametr == "noInfo"){
+                consoleWriter.printToConsole("id")
+                while (true){
+                    id = readFromUser.readUsersMessage()
+                    if (id != ""){
+                        resultReturn = id.toLong()
+                        if (resultReturn > 1){
+                            break
+                        }else{
+                            answerToUser.writeToConsoleLn("Введенное значение должно быть больше 1")
+                            consoleWriter.printToConsole("id")
+                        }
+                    }else{
+                        answerToUser.writeToConsoleLn("Введенное не должно равняться 0")
+                        consoleWriter.printToConsole("id")
+                    }
+                }
+                answerToUser.writeToConsoleLn("")
+            }else{
+                id = parametr
+                if (id != null) {
+                    resultReturn = id.toLong()
+                }
+            }
+        }catch (e: NumberFormatException){
+                answerToUser.writeToConsoleLn("Ошибка, установлено стандратное значение: 100")
+        }
         return resultReturn
     }
 
