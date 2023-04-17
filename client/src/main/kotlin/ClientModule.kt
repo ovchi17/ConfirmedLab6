@@ -4,6 +4,8 @@ import com.google.gson.Gson
 import moduleWithResults.ResultModule
 import moduleWithResults.Status
 import moduleWithResults.WorkWithResultModule
+import org.apache.logging.log4j.LogManager
+import org.apache.logging.log4j.Logger
 import usersView.AnswerToUser
 import java.net.DatagramPacket
 import java.net.InetAddress
@@ -19,14 +21,17 @@ class ClientModule() {
     private lateinit var channel: DatagramChannel
     val answerToUser = AnswerToUser()
     private val nameHost: String = "localhost"
-    private val namePort: Int = 2024
+    private val namePort: Int = 2026
     val gson = Gson()
+    val logger: Logger = LogManager.getLogger(ClientModule::class.java)
 
     fun start(){
+        logger.info("Запуск DatagramChannel")
         channel = DatagramChannel.open()
     }
 
     fun stop(){
+        logger.info("Остановка DatagramChannel")
         if (channel.isConnected){
             channel.disconnect()
         } else if (channel.isOpen){
@@ -41,7 +46,7 @@ class ClientModule() {
         val json = gson.toJson(data.getResultModule())
         val buffer = ByteBuffer.wrap(json.toByteArray())
         val address = InetSocketAddress(nameHost, namePort)
-        println("Отправленно")
+        logger.info("Запрос отправлен")
         channel.send(buffer, address)
     }
 
@@ -52,9 +57,11 @@ class ClientModule() {
         selector.select(3000)
         val selectedKeys = selector.selectedKeys()
         if (selectedKeys.isEmpty()) {
+            logger.info("Ответ от сервера не получен")
             return ResultModule(mutableListOf(), Status.ERROR, "noAnswer", "noCommand", mutableListOf())
         }else{
             val bufferReceive = ByteBuffer.allocate(65535)
+            logger.info("Получен ответ от сервера")
             channel.receive(bufferReceive)
             val bytesReceiver = bufferReceive.array()
             val resultStr = String(bytesReceiver, 0, bufferReceive.position())
