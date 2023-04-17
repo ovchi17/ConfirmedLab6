@@ -21,7 +21,7 @@ class ClientModule() {
     private lateinit var channel: DatagramChannel
     val answerToUser = AnswerToUser()
     private val nameHost: String = "localhost"
-    private val namePort: Int = 2026
+    private val namePort: Int = 2028
     val gson = Gson()
     val logger: Logger = LogManager.getLogger(ClientModule::class.java)
 

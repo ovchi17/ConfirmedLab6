@@ -31,7 +31,8 @@ class Tokenizator: KoinComponent {
         val listOfNo = listOf("help", "info", "show", "clear", "save", "exit", "exit_server", "remove_first", "history", "average_of_distance", "switch")
         val listOfLong = listOf("remove_by_id", "remove_all_by_distance", "filter_less_than_distance")
         val listOfString = listOf("execute_script")
-        val listOfAdd = listOf("add_if_max", "add", "update_id")
+        val listOfObject = listOf("add_if_max", "add")
+        val listOfObjectPlus = listOf("update_id")
 
         if (name in listOfNo){
             return "listOfNo"
@@ -39,8 +40,10 @@ class Tokenizator: KoinComponent {
             return  "listOfLong"
         }else if (name in listOfString){
             return "listOfString"
-        }else if (name in listOfAdd){
-            return "listOfAdd"
+        }else if (name in listOfObject){
+            return "listOfObject"
+        }else if (name in listOfObjectPlus){
+            return "listOfObjectPlus"
         }else{
             return "noCommand"
         }
@@ -95,9 +98,8 @@ class Tokenizator: KoinComponent {
             }else{
                 getResultModule.errorDescription?.let { writeToConsole.printToConsoleLn(it) }
             }
-        }else if(commandsList(command) == "listOfAdd"){
-            logger.info("Начала запуска команды по шаблону listOfAdd")
-            var list = mutableListOf<Any>()
+        }else if(commandsList(command) == "listOfObject"){
+            logger.info("Начала запуска команды по шаблону listOfObject")
             val name = addSet.name("noInfo")
             val coord1: Long = addSet.coord1("noInfo")
             val coord2: Long = addSet.coord2("noInfo")
@@ -108,12 +110,25 @@ class Tokenizator: KoinComponent {
             val location2_2: Long = addSet.location22("noInfo")
             val location3_2: Int = addSet.location32("noInfo")
             val distance = addSet.distance("noInfo")
-            if (command == "update_id"){
-                val id: Long = addSet.id("noInfo")
-                list = mutableListOf<Any>(name, coord1, coord2, location1, location2, location3, location1_2, location2_2, location3_2, distance, id)
-            }else{
-                list = mutableListOf<Any>(name, coord1, coord2, location1, location2, location3, location1_2, location2_2, location3_2, distance)
-            }
+            val list = mutableListOf<Any>(name, coord1, coord2, location1, location2, location3, location1_2, location2_2, location3_2, distance)
+            sendList.addAll(list)
+            clientModule.sender(command, sendList) // Следить
+            val resultAnswer = clientModule.receiver()
+            displayModule.displayModule(resultAnswer)
+        }else if(commandsList(command) == "listOfObjectPlus"){
+            logger.info("Начала запуска команды по шаблону listOfObjectPlus")
+            val name = addSet.name("noInfo")
+            val coord1: Long = addSet.coord1("noInfo")
+            val coord2: Long = addSet.coord2("noInfo")
+            val location1: Long = addSet.location1("noInfo")
+            val location2: Long = addSet.location2("noInfo")
+            val location3: Int = addSet.location3("noInfo")
+            val location1_2: Long = addSet.location12("noInfo")
+            val location2_2: Long = addSet.location22("noInfo")
+            val location3_2: Int = addSet.location32("noInfo")
+            val distance = addSet.distance("noInfo")
+            val id: Long = addSet.id("noInfo")
+            val list = mutableListOf<Any>(name, coord1, coord2, location1, location2, location3, location1_2, location2_2, location3_2, distance, id)
             sendList.addAll(list)
             clientModule.sender(command, sendList) // Следить
             val resultAnswer = clientModule.receiver()
