@@ -6,6 +6,8 @@ import commandsHelpers.Exit
 import commandsHelpers.Help
 import moduleWithResults.ResultModule
 import moduleWithResults.Status
+import org.apache.logging.log4j.LogManager
+import org.apache.logging.log4j.Logger
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import usersView.AnswerToUser
@@ -53,6 +55,7 @@ class Tokenizator: KoinComponent {
     val help = Help()
     val exit = Exit()
     val displayModule: WorkWithModule = WorkWithModule()
+    val logger: Logger = LogManager.getLogger(Tokenizator::class.java)
 
     /**
      * tokenizator method. Tokenizate massive to commands with right arguments.
@@ -65,6 +68,7 @@ class Tokenizator: KoinComponent {
         val sendList = mutableListOf<Any>()
         val clientModule: ClientModule by inject()
         if (commandsList(command) == "listOfLong"){
+            logger.info("Начала запуска команды по шаблону listOfLong")
             var newToken:Long = 1
             try {
                 newToken = mass[0].toLong()
@@ -76,6 +80,7 @@ class Tokenizator: KoinComponent {
             val resultAnswer = clientModule.receiver()
             displayModule.displayModule(resultAnswer)
         }else if(commandsList(command) == "listOfString"){
+            logger.info("Начала запуска команды по шаблону listOfString")
             sendList.add(mass[0])
             val getResultModule: ResultModule = executeScript.execute(sendList)
             if (getResultModule.status == Status.SUCCESS) {
@@ -91,6 +96,7 @@ class Tokenizator: KoinComponent {
                 getResultModule.errorDescription?.let { writeToConsole.printToConsoleLn(it) }
             }
         }else if(commandsList(command) == "listOfAdd"){
+            logger.info("Начала запуска команды по шаблону listOfAdd")
             var list = mutableListOf<Any>()
             val name = addSet.name("noInfo")
             val coord1: Long = addSet.coord1("noInfo")
@@ -113,6 +119,7 @@ class Tokenizator: KoinComponent {
             val resultAnswer = clientModule.receiver()
             displayModule.displayModule(resultAnswer)
         }else if(commandsList(command) == "listOfNo"){
+            logger.info("Начала запуска команды по шаблону listOfNo")
             if (command == "help"){
                 help.execute()
             }else if(command == "exit"){
@@ -123,6 +130,7 @@ class Tokenizator: KoinComponent {
                 displayModule.displayModule(resultAnswer)
             }
         }else if(commandsList(command) == "noCommand"){
+            logger.info("Неверная команда")
             writeToConsole.printToConsoleLn("infoAbout")
         }
     }

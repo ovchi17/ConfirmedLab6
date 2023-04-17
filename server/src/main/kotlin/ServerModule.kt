@@ -3,6 +3,8 @@ import java.net.DatagramPacket
 import java.net.DatagramSocket
 import com.google.gson.Gson
 import controllers.CollectionMainCommands
+import org.apache.logging.log4j.LogManager
+import org.apache.logging.log4j.Logger
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import workCommandsList.*
@@ -10,12 +12,13 @@ import java.net.InetAddress
 import java.nio.channels.Selector
 
 class ServerModule {
-    var socket = DatagramSocket(2024)
+    var socket = DatagramSocket(2026)
     val commandStarter = CommandStarter()
     val gson = Gson()
     val buffer = ByteArray(65535)
     val packet = DatagramPacket(buffer, buffer.size)
     val selector = Selector.open()
+    val logger: Logger = LogManager.getLogger(ServerModule::class.java)
 
     fun serverReceiver(){
         socket.receive(packet)
@@ -23,6 +26,7 @@ class ServerModule {
         val getInfo = gson.fromJson(json, ResultModule::class.java)
         if (getInfo.commandName != "noCommand"){
             println(getInfo)
+            logger.info("Получена команда: ${getInfo.commandName}")
             commandStarter.mp(getInfo.commandName)?.execute(getInfo.args)
         }
     }
@@ -33,6 +37,7 @@ class ServerModule {
         val changedToBytes = json.toByteArray()
         val packetToSend = DatagramPacket(changedToBytes, changedToBytes.size, packet.address, packet.port)
         print(result.msgToPrint)
+        logger.info("Отправлен результат")
         socket.send(packetToSend)
     }
 
