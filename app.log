@@ -57,3 +57,114 @@
 2023-04-17 23:31:13.400 [main] INFO  KoinStarter - Запуск команды: exit
 2023-04-17 23:31:13.400 [main] INFO  Tokenizator - Начала запуска команды по шаблону listOfNo
 2023-04-17 23:31:13.400 [main] INFO  ClientModule - Остановка DatagramChannel
+2023-04-18 00:38:42.611 [main] INFO  ClientModule - Запуск DatagramChannel
+2023-04-18 00:38:42.619 [main] INFO  KoinStarter - Начало программы
+2023-04-18 00:39:23.367 [main] INFO  ServerModuleGet - Запуск сервера
+2023-04-18 00:39:27.601 [main] INFO  KoinStarter - Запуск команды: show
+2023-04-18 00:39:27.601 [main] INFO  Tokenizator - Начала запуска команды по шаблону listOfNo
+2023-04-18 00:39:27.610 [main] INFO  ClientModule - Запрос отправлен
+2023-04-18 00:39:27.620 [main] INFO  ServerModule - Получена команда: show
+2023-04-18 00:39:27.629 [main] INFO  ServerModule - Отправлен результат
+2023-04-18 00:39:27.629 [main] INFO  ClientModule - Получен ответ от сервера
+2023-04-18 00:39:35.568 [main] INFO  KoinStarter - Запуск команды: add
+2023-04-18 00:39:35.568 [main] INFO  Tokenizator - Начала запуска команды по шаблону listOfAdd
+2023-04-18 00:39:41.449 [main] INFO  ClientModule - Запрос отправлен
+2023-04-18 00:39:41.450 [main] INFO  ServerModule - Получена команда: add
+2023-04-18 00:39:41.453 [main] INFO  ServerModule - Отправлен результат
+2023-04-18 00:39:41.453 [main] INFO  ClientModule - Получен ответ от сервера
+2023-04-18 00:39:43.860 [main] INFO  KoinStarter - Запуск команды: show
+2023-04-18 00:39:43.860 [main] INFO  Tokenizator - Начала запуска команды по шаблону listOfNo
+2023-04-18 00:39:43.861 [main] INFO  ClientModule - Запрос отправлен
+2023-04-18 00:39:43.861 [main] INFO  ServerModule - Получена команда: show
+2023-04-18 00:39:43.862 [main] INFO  ServerModule - Отправлен результат
+2023-04-18 00:39:43.862 [main] INFO  ClientModule - Получен ответ от сервера
+2023-04-18 00:40:15.108 [main] INFO  KoinStarter - Запуск команды: update_id
+2023-04-18 00:40:15.108 [main] INFO  Tokenizator - Начала запуска команды по шаблону listOfAdd
+2023-04-18 00:40:23.401 [main] INFO  ClientModule - Запрос отправлен
+2023-04-18 00:40:23.401 [main] INFO  ServerModule - Получена команда: update_id
+2023-04-18 00:40:23.402 [main] INFO  ServerModule - Отправлен результат
+2023-04-18 00:40:23.402 [main] INFO  ClientModule - Получен ответ от сервера
+2023-04-18 00:40:39.546 [main] INFO  KoinStarter - Запуск команды: save
+2023-04-18 00:40:39.546 [main] INFO  Tokenizator - Начала запуска команды по шаблону listOfNo
+2023-04-18 00:40:39.547 [main] INFO  ClientModule - Запрос отправлен
+2023-04-18 00:40:39.547 [main] INFO  ServerModule - Получена команда: save
+2023-04-18 00:40:42.559 [main] INFO  ClientModule - Ответ от сервера не получен
+2023-04-18 00:41:13.560 [main] INFO  KoinStarter - Запуск команды: average_of_distance
+2023-04-18 00:41:13.560 [main] INFO  Tokenizator - Начала запуска команды по шаблону listOfNo
+2023-04-18 00:41:13.561 [main] INFO  ClientModule - Запрос отправлен
+2023-04-18 00:41:13.561 [main] INFO  ServerModule - Получена команда: average_of_distance
+2023-04-18 00:41:13.565 [main] INFO  ServerModule - Отправлен результат
+2023-04-18 00:41:16.566 [main] INFO  ClientModule - Ответ от сервера не получен
+2023-04-18 00:41:33.408 [main] INFO  KoinStarter - Запуск команды: average_of_distance
+2023-04-18 00:41:33.408 [main] INFO  Tokenizator - Начала запуска команды по шаблону listOfNo
+2023-04-18 00:41:33.408 [main] INFO  ClientModule - Запрос отправлен
+2023-04-18 00:41:33.409 [main] INFO  ServerModule - Получена команда: average_of_distance
+2023-04-18 00:41:33.409 [main] INFO  ClientModule - Получен ответ от сервера
+2023-04-18 00:41:33.410 [main] INFO  ServerModule - Отправлен результат
+2023-04-18 00:42:00.966 [main] INFO  KoinStarter - Запуск команды: show
+2023-04-18 00:42:00.966 [main] INFO  Tokenizator - Начала запуска команды по шаблону listOfNo
+2023-04-18 00:42:00.966 [main] INFO  ClientModule - Запрос отправлен
+2023-04-18 00:42:00.967 [main] INFO  ServerModule - Получена команда: show
+2023-04-18 00:42:00.967 [main] INFO  ClientModule - Получен ответ от сервера
+2023-04-18 00:42:00.967 [main] INFO  ServerModule - Отправлен результат
+2023-04-18 00:42:07.530 [main] INFO  KoinStarter - Запуск команды: clear
+2023-04-18 00:42:07.530 [main] INFO  Tokenizator - Начала запуска команды по шаблону listOfNo
+2023-04-18 00:42:07.530 [main] INFO  ClientModule - Запрос отправлен
+2023-04-18 00:42:07.531 [main] INFO  ServerModule - Получена команда: clear
+2023-04-18 00:42:07.531 [main] INFO  ClientModule - Получен ответ от сервера
+2023-04-18 00:42:07.531 [main] INFO  ServerModule - Отправлен результат
+2023-04-18 00:42:19.794 [main] INFO  KoinStarter - Запуск команды: exit
+2023-04-18 00:42:19.794 [main] INFO  Tokenizator - Начала запуска команды по шаблону listOfNo
+2023-04-18 00:42:19.794 [main] INFO  ClientModule - Остановка DatagramChannel
+2023-04-18 00:55:12.046 [main] INFO  ClientModule - Запуск DatagramChannel
+2023-04-18 00:55:12.051 [main] INFO  KoinStarter - Начало программы
+2023-04-18 00:59:41.677 [main] INFO  ServerModuleGet - Запуск сервера
+2023-04-18 00:59:49.595 [main] INFO  ClientModule - Запуск DatagramChannel
+2023-04-18 00:59:49.600 [main] INFO  KoinStarter - Начало программы
+2023-04-18 00:59:54.613 [main] INFO  KoinStarter - Запуск команды: show
+2023-04-18 00:59:54.614 [main] INFO  Tokenizator - Начала запуска команды по шаблону listOfNo
+2023-04-18 00:59:54.623 [main] INFO  ClientModule - Запрос отправлен
+2023-04-18 00:59:54.633 [main] INFO  ServerModule - Получена команда: show
+2023-04-18 00:59:54.641 [main] INFO  ServerModule - Отправлен результат
+2023-04-18 00:59:54.642 [main] INFO  ClientModule - Получен ответ от сервера
+2023-04-18 01:00:00.625 [main] INFO  KoinStarter - Запуск команды: load
+2023-04-18 01:00:00.626 [main] INFO  Tokenizator - Неверная команда
+2023-04-18 01:00:05.286 [main] INFO  KoinStarter - Запуск команды: show
+2023-04-18 01:00:05.286 [main] INFO  Tokenizator - Начала запуска команды по шаблону listOfNo
+2023-04-18 01:00:05.287 [main] INFO  ClientModule - Запрос отправлен
+2023-04-18 01:00:05.287 [main] INFO  ServerModule - Получена команда: show
+2023-04-18 01:00:05.288 [main] INFO  ServerModule - Отправлен результат
+2023-04-18 01:00:05.288 [main] INFO  ClientModule - Получен ответ от сервера
+2023-04-18 01:00:24.061 [main] INFO  KoinStarter - Запуск команды: exit
+2023-04-18 01:00:24.061 [main] INFO  Tokenizator - Начала запуска команды по шаблону listOfNo
+2023-04-18 01:00:24.062 [main] INFO  ClientModule - Остановка DatagramChannel
+2023-04-18 01:02:03.375 [main] INFO  ServerModuleGet - Запуск сервера
+2023-04-18 01:02:08.410 [main] INFO  ClientModule - Запуск DatagramChannel
+2023-04-18 01:02:08.414 [main] INFO  KoinStarter - Начало программы
+2023-04-18 01:02:10.782 [main] INFO  KoinStarter - Запуск команды: show
+2023-04-18 01:02:10.783 [main] INFO  Tokenizator - Начала запуска команды по шаблону listOfNo
+2023-04-18 01:02:10.791 [main] INFO  ClientModule - Запрос отправлен
+2023-04-18 01:02:10.801 [main] INFO  ServerModule - Получена команда: show
+2023-04-18 01:02:10.809 [main] INFO  ServerModule - Отправлен результат
+2023-04-18 01:02:10.810 [main] INFO  ClientModule - Получен ответ от сервера
+2023-04-18 01:02:15.978 [main] INFO  KoinStarter - Запуск команды: save
+2023-04-18 01:02:15.979 [main] INFO  Tokenizator - Начала запуска команды по шаблону listOfNo
+2023-04-18 01:02:15.979 [main] INFO  ClientModule - Запрос отправлен
+2023-04-18 01:02:15.979 [main] INFO  ServerModule - Получена команда: save
+2023-04-18 01:02:16.006 [main] INFO  ServerModule - Отправлен результат
+2023-04-18 01:02:16.006 [main] INFO  ClientModule - Получен ответ от сервера
+2023-04-18 01:02:21.619 [main] INFO  KoinStarter - Запуск команды: load
+2023-04-18 01:02:21.619 [main] INFO  Tokenizator - Неверная команда
+2023-04-18 01:02:24.544 [main] INFO  KoinStarter - Запуск команды: load
+2023-04-18 01:02:24.544 [main] INFO  Tokenizator - Неверная команда
+2023-04-18 01:02:25.687 [main] INFO  KoinStarter - Запуск команды: load
+2023-04-18 01:02:25.687 [main] INFO  Tokenizator - Неверная команда
+2023-04-18 01:02:26.491 [main] INFO  KoinStarter - Запуск команды: loda
+2023-04-18 01:02:26.491 [main] INFO  Tokenizator - Неверная команда
+2023-04-18 01:02:28.086 [main] INFO  KoinStarter - Запуск команды: loda
+2023-04-18 01:02:28.087 [main] INFO  Tokenizator - Неверная команда
+2023-04-18 01:02:29.946 [main] INFO  KoinStarter - Запуск команды: load
+2023-04-18 01:02:29.946 [main] INFO  Tokenizator - Неверная команда
+2023-04-18 01:02:34.549 [main] INFO  KoinStarter - Запуск команды: exit
+2023-04-18 01:02:34.549 [main] INFO  Tokenizator - Начала запуска команды по шаблону listOfNo
+2023-04-18 01:02:34.549 [main] INFO  ClientModule - Остановка DatagramChannel

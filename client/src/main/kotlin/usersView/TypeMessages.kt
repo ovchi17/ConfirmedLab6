@@ -50,6 +50,7 @@ class TypeMessages {
         "noDistance" to "Нет distance в коллекции ",
         "noId" to "Нет id в коллекции ",
         "saved" to "Сохранено! ",
+        "loaded" to "Загружено!",
         "showName" to "Name: ",
         "showId" to " Id: ",
         "noResult" to "Нет подходящих элементов ",
