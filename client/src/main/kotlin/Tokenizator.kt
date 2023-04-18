@@ -1,9 +1,6 @@
 
 
-import commandsHelpers.AddSet
-import commandsHelpers.ExecuteScript
-import commandsHelpers.Exit
-import commandsHelpers.Help
+import commandsHelpers.*
 import moduleWithResults.ResultModule
 import moduleWithResults.Status
 import org.apache.logging.log4j.LogManager
@@ -14,6 +11,7 @@ import usersView.AnswerToUser
 import usersView.ConsoleWriter
 import usersView.TypeMessages
 import usersView.WorkWithModule
+import java.io.File
 
 
 /**
@@ -27,12 +25,72 @@ import usersView.WorkWithModule
 
 class Tokenizator: KoinComponent {
 
+    //var listOfNo = listOf("help", "info", "show", "clear", "save", "exit", "exit_server", "remove_first", "history", "average_of_distance", "switch")
+    //var listOfLong = listOf("remove_by_id", "remove_all_by_distance", "filter_less_than_distance")
+    //var listOfString = listOf("execute_script")
+    //var listOfObject = listOf("add_if_max", "add")
+    //var listOfObjectPlus = listOf("update_id")
+
+    var listOfNo: MutableList<String> = mutableListOf()
+    var listOfLong: MutableList<String> = mutableListOf()
+    var listOfString = listOf("execute_script")
+    var listOfObject: MutableList<String> = mutableListOf()
+    var listOfObjectPlus: MutableList<String> = mutableListOf()
+
+    val listNo = File("listNo.txt")
+    val listLong = File("listLong.txt")
+    val listObject = File("listObject.txt")
+    val listObjectPlus = File("listObjectPlus.txt")
+
+    fun downloadLists(){
+        if (listNo.exists()) {
+            val lines = listNo.readLines()
+            for (line in lines) {
+                listOfNo.addAll(line.split(" "))
+            }
+        }
+        if (listLong.exists()) {
+            val lines = listLong.readLines()
+            for (line in lines) {
+                listOfLong.addAll(line.split(" "))
+            }
+        }
+        if (listObject.exists()) {
+            val lines = listObject.readLines()
+            for (line in lines) {
+                listOfObject.addAll(line.split(" "))
+            }
+        }
+        if (listObjectPlus.exists()) {
+            val lines = listObjectPlus.readLines()
+            for (line in lines) {
+                listOfObjectPlus.addAll(line.split(" "))
+            }
+        }
+    }
+
+    fun uploadLists(){
+
+        val resultNo = listOfNo.joinToString(" ")
+        val resultLong = listOfLong.joinToString(" ")
+        val resultObject = listOfObject.joinToString(" ")
+        val resultObjectPlus = listOfObjectPlus.joinToString(" ")
+
+        if (listNo.exists()) {
+            listNo.writeText(resultNo)
+        }
+        if (listLong.exists()) {
+            listLong.writeText(resultLong)
+        }
+        if (listObject.exists()) {
+            listObject.writeText(resultObject)
+        }
+        if (listObjectPlus.exists()) {
+            listObjectPlus.writeText(resultObjectPlus)
+        }
+    }
+
     fun commandsList(name: String): String{
-        val listOfNo = listOf("help", "info", "show", "clear", "save", "exit", "exit_server", "remove_first", "history", "average_of_distance", "switch")
-        val listOfLong = listOf("remove_by_id", "remove_all_by_distance", "filter_less_than_distance")
-        val listOfString = listOf("execute_script")
-        val listOfObject = listOf("add_if_max", "add")
-        val listOfObjectPlus = listOf("update_id")
 
         if (name in listOfNo){
             return "listOfNo"
@@ -57,6 +115,7 @@ class Tokenizator: KoinComponent {
     val clientModule: ClientModule by inject()
     val help = Help()
     val exit = Exit()
+    val update = Update()
     val displayModule: WorkWithModule = WorkWithModule()
     val logger: Logger = LogManager.getLogger(Tokenizator::class.java)
 
@@ -142,7 +201,11 @@ class Tokenizator: KoinComponent {
             }else{
                 clientModule.sender(command, sendList) //Следить
                 val resultAnswer = clientModule.receiver()
-                displayModule.displayModule(resultAnswer)
+                if (command == "update_command"){
+                    update.execute(resultAnswer)
+                }else{
+                    displayModule.displayModule(resultAnswer)
+                }
             }
         }else if(commandsList(command) == "noCommand"){
             logger.info("Неверная команда")

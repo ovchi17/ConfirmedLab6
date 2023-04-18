@@ -7,7 +7,7 @@ package moduleWithResults
  * @since 1.0.0
  */
 class WorkWithResultModule {
-    var result: ResultModule = ResultModule(mutableListOf(), Status.SUCCESS, null, "noCommand", mutableListOf())
+    var result: ResultModule = ResultModule(mutableListOf(), Status.SUCCESS, null, "noCommand", mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf())
 
     /**
      * getMessages method. Return messages from commands
@@ -77,6 +77,22 @@ class WorkWithResultModule {
 
     fun getArgs(): List<Any>{
         return result.args
+    }
+
+    fun setListNo(arguments: List<String>){
+        result.listOfNo.addAll(arguments)
+    }
+
+    fun setListLong(arguments: List<String>){
+        result.listOfLong.addAll(arguments)
+    }
+
+    fun setListObject(arguments: List<String>){
+        result.listOfObject.addAll(arguments)
+    }
+
+    fun setListObjectPlus(arguments: List<String>){
+        result.listOfObjectPlus.addAll(arguments)
     }
 
     /**
