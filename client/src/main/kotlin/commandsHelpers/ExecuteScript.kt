@@ -29,8 +29,6 @@ class ExecuteScript: KoinComponent {
      *
      * @return info from command as ResultModule
      */
-
-
     fun execute(str: List<Any>): ResultModule {
 
         getLink = str[0] as String

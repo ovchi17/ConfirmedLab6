@@ -6,11 +6,22 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import usersView.AnswerToUser
 
+/**
+ * Class Update. Works with Result module with Status.UPDATE.
+ *
+ * @author OvchinnikovI17
+ * @since 1.0.0
+ */
 class Update: KoinComponent {
 
     val tokenizator: Tokenizator by inject()
     val answerToUser = AnswerToUser()
 
+    /**
+     * execute method. Check new commands
+     *
+     * @param module ResultModule
+     */
     fun execute(module: ResultModule){
         val lstNo = module.listOfNo
         val lstLong = module.listOfLong

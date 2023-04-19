@@ -16,6 +16,12 @@ import java.nio.channels.Selector
 import java.nio.channels.SocketChannel
 import java.util.ResourceBundle
 
+/**
+ * Class ClientModule. Works with client.
+ *
+ * @author OvchinnikovI17
+ * @since 1.0.0
+ */
 class ClientModule() {
 
     private lateinit var channel: DatagramChannel
@@ -25,11 +31,19 @@ class ClientModule() {
     val gson = Gson()
     val logger: Logger = LogManager.getLogger(ClientModule::class.java)
 
+    /**
+     * start method. Starts client module
+     *
+     */
     fun start(){
         logger.info("Запуск DatagramChannel")
         channel = DatagramChannel.open()
     }
 
+    /**
+     * stop method. Stops client module
+     *
+     */
     fun stop(){
         logger.info("Остановка DatagramChannel")
         if (channel.isConnected){
@@ -39,6 +53,12 @@ class ClientModule() {
         }
     }
 
+    /**
+     * sender method. Send ResultModule to server
+     *
+     * @param command String with commmand
+     * @param args List with arguments
+     */
     fun sender(command: String, args: List<Any>){
         val data = WorkWithResultModule()
         data.setCommand(command)
@@ -50,6 +70,11 @@ class ClientModule() {
         channel.send(buffer, address)
     }
 
+    /**
+    * reciver method. Get ResultModule from server
+    *
+    * @return ResultModule from server
+    */
     fun receiver():ResultModule{
         val selector = Selector.open()
         channel.configureBlocking(false)

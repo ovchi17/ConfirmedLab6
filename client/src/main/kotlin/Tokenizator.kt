@@ -21,15 +21,7 @@ import java.io.File
  * @author OvchinnikovI17
  * @since 1.0.0
  */
-
-
 class Tokenizator: KoinComponent {
-
-    //var listOfNo = listOf("help", "info", "show", "clear", "save", "exit", "exit_server", "remove_first", "history", "average_of_distance", "switch")
-    //var listOfLong = listOf("remove_by_id", "remove_all_by_distance", "filter_less_than_distance")
-    //var listOfString = listOf("execute_script")
-    //var listOfObject = listOf("add_if_max", "add")
-    //var listOfObjectPlus = listOf("update_id")
 
     var listOfNo: MutableList<String> = mutableListOf()
     var listOfLong: MutableList<String> = mutableListOf()
@@ -42,6 +34,10 @@ class Tokenizator: KoinComponent {
     val listObject = File("listObject.txt")
     val listObjectPlus = File("listObjectPlus.txt")
 
+    /**
+     * downloadLists method. Download info from file
+     *
+     */
     fun downloadLists(){
         if (listNo.exists()) {
             val lines = listNo.readLines()
@@ -69,6 +65,10 @@ class Tokenizator: KoinComponent {
         }
     }
 
+    /**
+     * uploadLists method. Upload info to file
+     *
+     */
     fun uploadLists(){
 
         val resultNo = listOfNo.joinToString(" ")
@@ -90,6 +90,12 @@ class Tokenizator: KoinComponent {
         }
     }
 
+    /**
+     * commandsList method. Returns command type
+     *
+     * @param name String, command name
+     * @return String, command type
+     */
     fun commandsList(name: String): String{
 
         if (name in listOfNo){
@@ -124,7 +130,6 @@ class Tokenizator: KoinComponent {
      *
      * @param command: Command. Contains the command to be executed.
      * @param mass: Array of String arguments.
-     * @param workWithCollection: WorkWithCollection contains our main collection
      */
     fun tokenizator(command: String, mass: List<String>){
         val sendList = mutableListOf<Any>()
@@ -213,6 +218,12 @@ class Tokenizator: KoinComponent {
         }
     }
 
+    /**
+     * tokenizatorAdder method. In fact, second tokenizator
+     *
+     * @param command: Command. Contains the command to be executed.
+     * @param mass: Array of String arguments.
+     */
     fun tokenizatorAdder(command: String, mass: List<String>){
         val sendList = mutableListOf<Any>()
         val args = mass[1].split(" ")

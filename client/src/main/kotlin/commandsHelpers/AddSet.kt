@@ -349,6 +349,12 @@ class AddSet {
         return resultReturn
     }
 
+    /**
+     * id method. Set id
+     *
+     * @param parametr
+     * @return message as Long
+     */
     fun id(parametr: String?): Long{
         var id: String? = "2"
         var resultReturn: Long = 100

@@ -2,12 +2,17 @@ package commandsHelpers
 
 import usersView.ConsoleWriter
 
+/**
+ * Class Help. Shows all commands.
+ *
+ * @author OvchinnikovI17
+ * @since 1.0.0
+ */
 class Help {
 
     /**
      * execute method. Returns add commands with info
      *
-     * @return info from command as ResultModule
      */
     fun execute() {
         val writeToConsole: ConsoleWriter = ConsoleWriter()
