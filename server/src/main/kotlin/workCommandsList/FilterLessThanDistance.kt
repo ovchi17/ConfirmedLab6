@@ -21,6 +21,8 @@ class FilterLessThanDistance: Command() {
      */
     override fun execute(getArgs: MutableList<Any>){
 
+        var flag = false
+
         val collection = PriorityQueue<Route>(RouteComporator())
         collection.addAll(workWithCollection.getCollection())
 
@@ -42,12 +44,14 @@ class FilterLessThanDistance: Command() {
                     workWithResultModule.setMessages("Name: " + collection.peek().name)
                     workWithResultModule.setMessages("   " + " Id: " + collection.peek().id.toString())
                     collection.poll()
-                }else{
-                    workWithResultModule.setMessages("noResult")
+                    flag = true
                 }
+
             }
         }
-
+        if(!flag){
+            workWithResultModule.setMessages("noResult")
+        }
         workWithCollection.clearCollection()
         workWithCollection.addAllElementToCollection(collection)
 

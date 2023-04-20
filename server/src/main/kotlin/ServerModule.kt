@@ -12,7 +12,7 @@ import java.net.InetAddress
 import java.nio.channels.Selector
 
 class ServerModule {
-    var socket = DatagramSocket(2029)
+    var socket = DatagramSocket(2025)
     val commandStarter = CommandStarter()
     val gson = Gson()
     val buffer = ByteArray(65535)
@@ -53,7 +53,8 @@ class CommandStarter(): KoinComponent{
         val add: Add = Add()
         val removeById: RemoveById = RemoveById()
         val clear: Clear = Clear()
-        //val save: Save = Save()
+        val save: Save = Save()
+        val load: Load = Load()
         val updateCommand: UpdateCommand = UpdateCommand()
         val updateId: UpdateId = UpdateId()
         val exitServer: ExitServer = ExitServer()
@@ -71,7 +72,8 @@ class CommandStarter(): KoinComponent{
             "add" to add,
             "remove_by_id" to removeById,
             "clear" to clear,
-            //"save" to save,
+            "save" to save,
+            "load" to load,
             "update_id" to updateId,
             "update_command" to updateCommand,
             "exit_server" to exitServer,
