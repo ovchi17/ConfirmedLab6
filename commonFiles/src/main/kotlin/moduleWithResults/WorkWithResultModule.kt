@@ -7,7 +7,7 @@ package moduleWithResults
  * @since 1.0.0
  */
 class WorkWithResultModule {
-    var result: ResultModule = ResultModule(mutableListOf(), Status.SUCCESS, null, "noCommand", mutableListOf())
+    var result: ResultModule = ResultModule(mutableListOf(), Status.SUCCESS, null, "noCommand", mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf())
 
     /**
      * getMessages method. Return messages from commands
@@ -63,20 +63,76 @@ class WorkWithResultModule {
         return result.errorDescription
     }
 
+    /**
+     * setCommand method. Set commands
+     *
+     * @param cmd as String
+     */
     fun setCommand(cmd: String){
         result.commandName = cmd
     }
 
+    /**
+     * getCommand method. Get commands
+     *
+     * @return String
+     */
     fun getCommand(): String{
         return result.commandName
     }
 
+    /**
+     * setArgs method. Set arguments
+     *
+     * @param arguments as List
+     */
     fun setArgs(arguments: List<Any>){
         result.args.addAll(arguments)
     }
 
+    /**
+     * getArgs method. Get arguments
+     *
+     * @return List
+     */
     fun getArgs(): List<Any>{
         return result.args
+    }
+
+    /**
+     * setListNo method. Helps with distribution
+     *
+     * @param arguments List
+     */
+    fun setListNo(arguments: List<String>){
+        result.listOfNo.addAll(arguments)
+    }
+
+    /**
+     * setListLong method. Helps with distribution
+     *
+     * @param arguments List
+     */
+    fun setListLong(arguments: List<String>){
+        result.listOfLong.addAll(arguments)
+    }
+
+    /**
+     * setListObject method. Helps with distribution
+     *
+     * @param arguments List
+     */
+    fun setListObject(arguments: List<String>){
+        result.listOfObject.addAll(arguments)
+    }
+
+    /**
+     * setListObjectPlus method. Helps with distribution
+     *
+     * @param arguments List
+     */
+    fun setListObjectPlus(arguments: List<String>){
+        result.listOfObjectPlus.addAll(arguments)
     }
 
     /**

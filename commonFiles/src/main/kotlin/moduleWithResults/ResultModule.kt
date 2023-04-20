@@ -10,6 +10,10 @@ data class ResultModule (
     var status: Status,
     var errorDescription: String?,
     var commandName: String,
-    var args: MutableList<Any>
+    var args: MutableList<Any>,
+    var listOfNo: MutableList<String>,
+    var listOfLong: MutableList<String>,
+    var listOfObject: MutableList<String>,
+    var listOfObjectPlus: MutableList<String>
 )
 

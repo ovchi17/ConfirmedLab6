@@ -30,7 +30,7 @@ class UpdateId: Command() {
         val location2_2: Long? = (str[7] as Double).toLong()
         val location3_2: Int? = (str[8] as Double).toInt()
         distance = (str[9] as Double).toLong()
-        id = (str[9] as Double).toLong()
+        id = (str[10] as Double).toLong()
 
         coordinates = Coordinates(coord1, coord2)
         to = Location(location1, location2, location3)

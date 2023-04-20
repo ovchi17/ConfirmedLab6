@@ -46,14 +46,15 @@ class ServerModule {
 class CommandStarter(): KoinComponent{
 
     val workWithCollection: CollectionMainCommands by inject()
+
     fun mp(command: String): Command? {
         val info: Info = Info()
         val show: Show = Show()
         val add: Add = Add()
         val removeById: RemoveById = RemoveById()
         val clear: Clear = Clear()
-        val save: Save = Save()
-        val load: Load = Load()
+        //val save: Save = Save()
+        val updateCommand: UpdateCommand = UpdateCommand()
         val updateId: UpdateId = UpdateId()
         val exitServer: ExitServer = ExitServer()
         val removeFirst: RemoveFirst = RemoveFirst()
@@ -70,9 +71,9 @@ class CommandStarter(): KoinComponent{
             "add" to add,
             "remove_by_id" to removeById,
             "clear" to clear,
-            "save" to save,
-            "load" to load,
+            //"save" to save,
             "update_id" to updateId,
+            "update_command" to updateCommand,
             "exit_server" to exitServer,
             "remove_first" to removeFirst,
             "add_if_max" to addIfMax,

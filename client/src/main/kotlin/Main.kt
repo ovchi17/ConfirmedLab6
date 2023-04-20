@@ -19,10 +19,11 @@ fun main() {
     System.setProperty("log4j.configurationFile", "classpath:log4j2.xml")
     val logger: Logger = LogManager.getLogger(KoinStarter::class.java)
 
-
     writeToConsole.writeToConsoleLn("Для получения списка команд введите: help")
     clientModule.start()
     logger.info("Начало программы")
+    tokenizator.downloadLists()
+    tokenizator.tokenizator("update_command", mutableListOf<String>())
 
     while (true){
         writeToConsole.writeToConsole("> ")

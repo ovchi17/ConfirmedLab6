@@ -1,9 +1,6 @@
 
 
-import commandsHelpers.AddSet
-import commandsHelpers.ExecuteScript
-import commandsHelpers.Exit
-import commandsHelpers.Help
+import commandsHelpers.*
 import moduleWithResults.ResultModule
 import moduleWithResults.Status
 import org.apache.logging.log4j.LogManager
@@ -14,6 +11,7 @@ import usersView.AnswerToUser
 import usersView.ConsoleWriter
 import usersView.TypeMessages
 import usersView.WorkWithModule
+import java.io.File
 
 
 /**
@@ -23,15 +21,82 @@ import usersView.WorkWithModule
  * @author OvchinnikovI17
  * @since 1.0.0
  */
-
-
 class Tokenizator: KoinComponent {
 
+    var listOfNo: MutableList<String> = mutableListOf()
+    var listOfLong: MutableList<String> = mutableListOf()
+    var listOfString = listOf("execute_script")
+    var listOfObject: MutableList<String> = mutableListOf()
+    var listOfObjectPlus: MutableList<String> = mutableListOf()
+
+    val listNo = File("listNo.txt")
+    val listLong = File("listLong.txt")
+    val listObject = File("listObject.txt")
+    val listObjectPlus = File("listObjectPlus.txt")
+
+    /**
+     * downloadLists method. Download info from file
+     *
+     */
+    fun downloadLists(){
+        if (listNo.exists()) {
+            val lines = listNo.readLines()
+            for (line in lines) {
+                listOfNo.addAll(line.split(" "))
+            }
+        }
+        if (listLong.exists()) {
+            val lines = listLong.readLines()
+            for (line in lines) {
+                listOfLong.addAll(line.split(" "))
+            }
+        }
+        if (listObject.exists()) {
+            val lines = listObject.readLines()
+            for (line in lines) {
+                listOfObject.addAll(line.split(" "))
+            }
+        }
+        if (listObjectPlus.exists()) {
+            val lines = listObjectPlus.readLines()
+            for (line in lines) {
+                listOfObjectPlus.addAll(line.split(" "))
+            }
+        }
+    }
+
+    /**
+     * uploadLists method. Upload info to file
+     *
+     */
+    fun uploadLists(){
+
+        val resultNo = listOfNo.joinToString(" ")
+        val resultLong = listOfLong.joinToString(" ")
+        val resultObject = listOfObject.joinToString(" ")
+        val resultObjectPlus = listOfObjectPlus.joinToString(" ")
+
+        if (listNo.exists()) {
+            listNo.writeText(resultNo)
+        }
+        if (listLong.exists()) {
+            listLong.writeText(resultLong)
+        }
+        if (listObject.exists()) {
+            listObject.writeText(resultObject)
+        }
+        if (listObjectPlus.exists()) {
+            listObjectPlus.writeText(resultObjectPlus)
+        }
+    }
+
+    /**
+     * commandsList method. Returns command type
+     *
+     * @param name String, command name
+     * @return String, command type
+     */
     fun commandsList(name: String): String{
-        val listOfNo = listOf("help", "info", "show", "clear", "save", "load","exit", "exit_server", "remove_first", "history", "average_of_distance", "switch")
-        val listOfLong = listOf("remove_by_id", "remove_all_by_distance", "filter_less_than_distance")
-        val listOfString = listOf("execute_script")
-        val listOfAdd = listOf("add_if_max", "add", "update_id")
 
         if (name in listOfNo){
             return "listOfNo"
@@ -39,8 +104,10 @@ class Tokenizator: KoinComponent {
             return  "listOfLong"
         }else if (name in listOfString){
             return "listOfString"
-        }else if (name in listOfAdd){
-            return "listOfAdd"
+        }else if (name in listOfObject){
+            return "listOfObject"
+        }else if (name in listOfObjectPlus){
+            return "listOfObjectPlus"
         }else{
             return "noCommand"
         }
@@ -54,6 +121,7 @@ class Tokenizator: KoinComponent {
     val clientModule: ClientModule by inject()
     val help = Help()
     val exit = Exit()
+    val update = Update()
     val displayModule: WorkWithModule = WorkWithModule()
     val logger: Logger = LogManager.getLogger(Tokenizator::class.java)
 
@@ -62,7 +130,6 @@ class Tokenizator: KoinComponent {
      *
      * @param command: Command. Contains the command to be executed.
      * @param mass: Array of String arguments.
-     * @param workWithCollection: WorkWithCollection contains our main collection
      */
     fun tokenizator(command: String, mass: List<String>){
         val sendList = mutableListOf<Any>()
@@ -95,9 +162,8 @@ class Tokenizator: KoinComponent {
             }else{
                 getResultModule.errorDescription?.let { writeToConsole.printToConsoleLn(it) }
             }
-        }else if(commandsList(command) == "listOfAdd"){
-            logger.info("Начала запуска команды по шаблону listOfAdd")
-            var list = mutableListOf<Any>()
+        }else if(commandsList(command) == "listOfObject"){
+            logger.info("Начала запуска команды по шаблону listOfObject")
             val name = addSet.name("noInfo")
             val coord1: Long = addSet.coord1("noInfo")
             val coord2: Long = addSet.coord2("noInfo")
@@ -108,12 +174,25 @@ class Tokenizator: KoinComponent {
             val location2_2: Long = addSet.location22("noInfo")
             val location3_2: Int = addSet.location32("noInfo")
             val distance = addSet.distance("noInfo")
-            if (command == "update_id"){
-                val id: Long = addSet.id("noInfo")
-                list = mutableListOf<Any>(name, coord1, coord2, location1, location2, location3, location1_2, location2_2, location3_2, distance, id)
-            }else{
-                list = mutableListOf<Any>(name, coord1, coord2, location1, location2, location3, location1_2, location2_2, location3_2, distance)
-            }
+            val list = mutableListOf<Any>(name, coord1, coord2, location1, location2, location3, location1_2, location2_2, location3_2, distance)
+            sendList.addAll(list)
+            clientModule.sender(command, sendList) // Следить
+            val resultAnswer = clientModule.receiver()
+            displayModule.displayModule(resultAnswer)
+        }else if(commandsList(command) == "listOfObjectPlus"){
+            logger.info("Начала запуска команды по шаблону listOfObjectPlus")
+            val name = addSet.name("noInfo")
+            val coord1: Long = addSet.coord1("noInfo")
+            val coord2: Long = addSet.coord2("noInfo")
+            val location1: Long = addSet.location1("noInfo")
+            val location2: Long = addSet.location2("noInfo")
+            val location3: Int = addSet.location3("noInfo")
+            val location1_2: Long = addSet.location12("noInfo")
+            val location2_2: Long = addSet.location22("noInfo")
+            val location3_2: Int = addSet.location32("noInfo")
+            val distance = addSet.distance("noInfo")
+            val id: Long = addSet.id("noInfo")
+            val list = mutableListOf<Any>(name, coord1, coord2, location1, location2, location3, location1_2, location2_2, location3_2, distance, id)
             sendList.addAll(list)
             clientModule.sender(command, sendList) // Следить
             val resultAnswer = clientModule.receiver()
@@ -127,7 +206,11 @@ class Tokenizator: KoinComponent {
             }else{
                 clientModule.sender(command, sendList) //Следить
                 val resultAnswer = clientModule.receiver()
-                displayModule.displayModule(resultAnswer)
+                if (command == "update_command"){
+                    update.execute(resultAnswer)
+                }else{
+                    displayModule.displayModule(resultAnswer)
+                }
             }
         }else if(commandsList(command) == "noCommand"){
             logger.info("Неверная команда")
@@ -135,6 +218,12 @@ class Tokenizator: KoinComponent {
         }
     }
 
+    /**
+     * tokenizatorAdder method. In fact, second tokenizator
+     *
+     * @param command: Command. Contains the command to be executed.
+     * @param mass: Array of String arguments.
+     */
     fun tokenizatorAdder(command: String, mass: List<String>){
         val sendList = mutableListOf<Any>()
         val args = mass[1].split(" ")
