@@ -16,7 +16,7 @@ class Show: Command() {
     /**
      * execute method. Show objects from collection
      *
-     * @return info from command as ResultModule
+     * @param getArgs arguments
      */
     override fun execute(getArgs: MutableList<Any>){
 

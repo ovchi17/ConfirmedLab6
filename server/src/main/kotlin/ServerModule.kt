@@ -11,6 +11,12 @@ import workCommandsList.*
 import java.net.InetAddress
 import java.nio.channels.Selector
 
+/**
+ * Class ServerModule.
+ *
+ * @author OvchinnikovI17
+ * @since 1.0.0
+ */
 class ServerModule {
     var socket = DatagramSocket(2025)
     val commandStarter = CommandStarter()
@@ -20,6 +26,10 @@ class ServerModule {
     val selector = Selector.open()
     val logger: Logger = LogManager.getLogger(ServerModule::class.java)
 
+    /**
+     * serverReceiver method. Receives args and command from client
+     *
+     */
     fun serverReceiver(){
         socket.receive(packet)
         val json = String(packet.data, 0, packet.length)
@@ -31,6 +41,11 @@ class ServerModule {
         }
     }
 
+    /**
+     * serverSender method. Send to client ResultModule
+     *
+     * @param result arguments
+     */
     fun serverSender(result: ResultModule){
         val gson = Gson()
         val json = gson.toJson(result)

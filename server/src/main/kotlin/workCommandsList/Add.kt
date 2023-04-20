@@ -15,7 +15,7 @@ class Add: Command() {
     /**
      * execute method. Add object to collection
      *
-     * @return info from command as ResultModule
+     * @param getArgs arguments
      */
     override fun execute(getArgs: MutableList<Any>) {
 

@@ -13,7 +13,7 @@ class Info: Command() {
     /**
      * execute method. Returns info about collection
      *
-     * @return info from command as ResultModule
+     * @param getArgs arguments
      */
     override fun execute(getArgs: MutableList<Any>){
 

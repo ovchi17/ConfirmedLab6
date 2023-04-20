@@ -17,7 +17,7 @@ class FilterLessThanDistance: Command() {
     /**
      * execute method. Delete all objects where distance is less than given
      *
-     * @return info from command as ResultModule
+     * @param getArgs arguments
      */
     override fun execute(getArgs: MutableList<Any>){
 

@@ -7,7 +7,19 @@ import dataSet.RouteComporator
 import java.time.LocalDate
 import java.util.*
 
+/**
+ * Class UpdateId.
+ *
+ * @author OvchinnikovI17
+ * @since 1.0.0
+ */
 class UpdateId: Command() {
+
+    /**
+     * execute method. Update object with selected id
+     *
+     * @param getArgs arguments
+     */
     override fun execute(getArgs: MutableList<Any>){
         val str = getArgs as List<Any>
 

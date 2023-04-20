@@ -24,7 +24,7 @@ abstract class Command(): KoinComponent {
     /**
      * execute method. Using in all workCommandsList
      *
-     * @return info from command as ResultModule
+     * @param getArgs arguments
      */
     abstract fun execute(getArgs: MutableList<Any>)
 

@@ -13,7 +13,7 @@ class History: Command() {
     /**
      * execute method. Returns history
      *
-     * @return info from command as ResultModule
+     * @param getArgs arguments
      */
     override fun execute(getArgs: MutableList<Any>){
 

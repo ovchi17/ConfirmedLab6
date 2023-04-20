@@ -19,7 +19,7 @@ class AddIfMax: Command() {
     /**
      * execute method. Add object if distance is max
      *
-     * @return info from command as ResultModule
+     * @param getArgs arguments
      */
     override fun execute(getArgs: MutableList<Any>) {
 

@@ -19,7 +19,7 @@ class Save: Command() {
     /**
      * execute method. Save collection to file
      *
-     * @return info from command as ResultModule
+     * @param getArgs arguments
      */
     override fun execute(getArgs: MutableList<Any>){
          val pathToFile = System.getProperty("DataOfCollection.server")

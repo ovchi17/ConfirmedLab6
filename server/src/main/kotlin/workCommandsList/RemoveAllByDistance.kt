@@ -16,7 +16,7 @@ class RemoveAllByDistance: Command() {
     /**
      * execute method. Remove all objects with distance in parametrs
      *
-     * @return info from command as ResultModule
+     * @param getArgs arguments
      */
     override fun execute(getArgs: MutableList<Any>){
 

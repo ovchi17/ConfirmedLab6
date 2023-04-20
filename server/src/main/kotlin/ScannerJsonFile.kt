@@ -20,7 +20,6 @@ class ScannerJsonFile: KoinComponent {
      * scanFile method.
      *
      */
-
     fun scanFile(){
         val workWithFile: WorkWithFile = WorkWithFile()
         val pathToFile: String = System.getenv("DataOfCollection.txt")

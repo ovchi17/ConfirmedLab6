@@ -17,7 +17,7 @@ class AverageOfDistance: Command() {
     /**
      * execute method. Returns average distance
      *
-     * @return info from command as ResultModule
+     * @param getArgs arguments
      */
     override fun execute(getArgs: MutableList<Any>){
 

@@ -17,7 +17,7 @@ class Load: Command() {
     /**
      * execute method. Save collection to file
      *
-     * @return info from command as ResultModule
+     * @param getArgs arguments
      */
     override fun execute(getArgs: MutableList<Any>){
         val pathToFile: String = System.getProperty("DataOfCollection.server")

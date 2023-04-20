@@ -16,7 +16,7 @@ class RemoveById: Command() {
     /**
      * execute method. Remove object by given id
      *
-     * @return info from command as ResultModule
+     * @param getArgs arguments
      */
     override fun execute(getArgs: MutableList<Any>) {
 
