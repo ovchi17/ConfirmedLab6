@@ -1,7 +1,5 @@
 package workCommandsList
 
-import moduleWithResults.ResultModule
-
 /**
  * Class Info. Shows information about a commands
  *
@@ -23,6 +21,6 @@ class Info: Command() {
         workWithResultModule.setMessages("Размер коллекции: " + collection.size.toString())
         workWithResultModule.setMessages("Дата создания коллекции: " + workWithCollection.getInitDate().toString())
 
-        serverModule.serverSender(workWithResultModule.getResultModule())
+//        serverModule.serverSender(workWithResultModule.getResultModule())
     }
 }

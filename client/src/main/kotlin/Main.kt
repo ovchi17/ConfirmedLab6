@@ -12,7 +12,7 @@ fun main() {
     startKoin {
         modules(koinModule)
     }
-    //Stas
+
     val writeToConsole: AnswerToUser = AnswerToUser()
     val tokenizator = KoinStarter().returnTokenizator()
     val clientModule = KoinStarter().returnClientModule()

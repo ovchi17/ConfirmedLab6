@@ -2,8 +2,6 @@ package workCommandsList
 
 import dataSet.Route
 import dataSet.RouteComporator
-import moduleWithResults.ResultModule
-import java.io.FileReader
 import java.util.PriorityQueue
 
 /**
@@ -13,9 +11,6 @@ import java.util.PriorityQueue
  * @since 1.0.0
  */
 class Save: Command() {
-     //private var pathToFile: String = System.getenv("DataOfCollection.txt")
-     //private var fileReader: FileReader = FileReader(pathToFile)
-
     /**
      * execute method. Save collection to file
      *

@@ -1,7 +1,5 @@
 package workCommandsList
 
-import moduleWithResults.ResultModule
-
 /**
  * Class History. Shows the history of commands
  *

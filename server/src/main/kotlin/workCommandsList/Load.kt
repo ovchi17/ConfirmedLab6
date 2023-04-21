@@ -11,8 +11,6 @@ import java.util.*
  * @since 1.0.0
  */
 class Load: Command() {
-    //private var pathToFile: String = System.getenv("DataOfCollection.txt")
-    //private var fileReader: FileReader = FileReader(pathToFile)
 
     /**
      * execute method. Save collection to file
@@ -20,8 +18,8 @@ class Load: Command() {
      * @param getArgs arguments
      */
     override fun execute(getArgs: MutableList<Any>){
-        val pathToFile: String = System.getProperty("DataOfCollection.server")
-//        по факту нет файла=нет путя=нечего загружать, нужно реализовать именно файл НОРМАЛЬНО.
+//        val pathToFile: String = System.getProperty("DataOfCollection.server")
+        val pathToFile: String = System.getProperty("DataOfCollection.test")
         if (!workWithFile.checkFile(pathToFile)){
             val list = serializer.deserialize(workWithFile.readFile(File(pathToFile)))
             val collection: PriorityQueue<Route> = workWithCollection.listToCollection(list)

@@ -1,7 +1,5 @@
 package workCommandsList
 
-import moduleWithResults.ResultModule
-
 /**
  * Class Switch.
  *

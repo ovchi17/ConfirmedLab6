@@ -1,7 +1,5 @@
 package workCommandsList
 
-//import commandsHelpers.ResultModule
-import moduleWithResults.ResultModule
 import kotlin.system.exitProcess
 
 /**
@@ -18,7 +16,6 @@ class ExitServer: Command(){
      * @param getArgs arguments
      */
     override fun execute(getArgs: MutableList<Any>){
-        //workWithResultModule.setMessages("end")
         exitProcess(0)
 
         serverModule.serverSender(workWithResultModule.getResultModule())

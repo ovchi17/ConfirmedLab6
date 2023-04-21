@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import workCommandsList.*
-import java.net.InetAddress
 import java.nio.channels.Selector
 
 /**
@@ -18,7 +17,7 @@ import java.nio.channels.Selector
  * @since 1.0.0
  */
 class ServerModule {
-    var socket = DatagramSocket(2025)
+    var socket = DatagramSocket(2023)
     val commandStarter = CommandStarter()
     val gson = Gson()
     val buffer = ByteArray(65535)

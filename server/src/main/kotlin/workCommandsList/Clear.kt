@@ -1,8 +1,6 @@
 package workCommandsList
 
 
-import moduleWithResults.ResultModule
-
 /**
  * Class Clear. Remove all objects from the collection
  *

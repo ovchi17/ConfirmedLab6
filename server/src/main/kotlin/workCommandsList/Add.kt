@@ -2,7 +2,6 @@ package workCommandsList
 
 import dataSet.*
 import java.time.LocalDate
-import moduleWithResults.ResultModule
 
 /**
  * Class Add. Adds a new object to the collection
